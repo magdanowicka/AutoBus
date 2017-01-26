@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.springframework.org/tags/form" xmlns:spring="http://www.springframework.org/tags">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII"></meta>
+    <title>Title</title>
+</head>
+<body>
+
+
+       
+  
+    <form modelAttribute="user" method="POST" th:action="@{/register}">
+    <input type="hidden"
+           th:name="${_csrf.parameterName}"
+           th:value="${_csrf.token}" />
+    <table width="100%" border="1"  cellpadding="5" align="left" >
+    <tr>
+        <td><label>username:</label></td>
+        <td><input type="text" th:name="${username}" path="username" th:value="${token}" /></td>
+    </tr>
+    <tr>
+        <td><label>surname:</label></td>
+        <td><input type="text" th:name="${surname}"  path="surname"  th:value="${token}"/></td>
+
+    </tr>
+    <tr>
+        <td><label>email:</label></td>
+        <td><input type="email" th:name="${email}"   path="email" th:value="${token}"/></td>
+    </tr>
+    <tr>
+        <td><label>phone:</label></td>
+        <td><input type="text" th:name="${phone}"   path="phone" th:value="${token}"/></td>
+
+    </tr>
+    <tr>
+        <td><label>password:</label></td>
+        <td><input type="password" th:name="${password}"   path="password" th:value="${token}"/></td>
+
+    </tr>
+    <tr>
+        <td><label>matchingPassword:</label></td>
+        <td><input type="password" th:name="${matchingPassword}"   path="matchingPassword" th:value="${token}"/></td>
+
+    </tr>
+
+    <button type="submit">
+        Zarejestruj
+
+    </button>
+    </table>
+           
+    </form>
+    
+
+</body>
+</html>
