@@ -9,6 +9,7 @@ import java.util.List;
 @Entity
 @Table(name = "user", schema = "public", catalog = "AutoBus")
 public class User {
+
     private int id;
     private String username;
     private String surname;
@@ -21,7 +22,9 @@ public class User {
     private List<UserRoles> rolesByUserId;
 
     @Id
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_generator")
+    @SequenceGenerator(name="user_id_generator", sequenceName = "user_id_seq", initialValue=100, allocationSize=50)
+    @Column(name = "id", updatable = false, nullable = false)
     public int getId() {
         return id;
     }

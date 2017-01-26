@@ -1,5 +1,6 @@
-package pl.mnowicka.autobus;
+package pl.mnowicka.autobus.service;
 
+import pl.mnowicka.autobus.domain.UserDto;
 import pl.mnowicka.autobus.entities.User;
 
 /**

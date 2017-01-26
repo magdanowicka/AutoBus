@@ -1,4 +1,4 @@
-package pl.mnowicka.autobus;
+package pl.mnowicka.autobus.domain;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -33,6 +33,7 @@ public class UserDto {
     @NotNull
     @NotEmpty
     private String phone;
+
 
     public String getUsername() {
         return username;

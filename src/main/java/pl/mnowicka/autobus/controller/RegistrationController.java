@@ -1,5 +1,8 @@
 package pl.mnowicka.autobus.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -7,9 +10,9 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
-import pl.mnowicka.autobus.EmailExistsException;
-import pl.mnowicka.autobus.UserDto;
-import pl.mnowicka.autobus.UserService;
+import pl.mnowicka.autobus.service.EmailExistsException;
+import pl.mnowicka.autobus.domain.UserDto;
+import pl.mnowicka.autobus.service.UserService;
 import pl.mnowicka.autobus.entities.User;
 
 
@@ -21,8 +24,14 @@ import javax.validation.Valid;
 @Controller
 public class RegistrationController {
 
+    private final static Logger logger = LoggerFactory.getLogger(RegistrationController.class);
+
+    @Autowired
+    private UserService service;
+
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String showRegistrationForm(WebRequest request, Model model) {
+
         UserDto userDto = new UserDto();
         model.addAttribute("user", userDto);
         return "register";
@@ -33,36 +42,27 @@ public class RegistrationController {
     public ModelAndView registerUserAccount(@ModelAttribute("user") @Valid UserDto accountDto,
                                             BindingResult result, WebRequest request, Errors errors)  {
 
-        User registered = new User();
+        String viewName = "register";
+
         if (!result.hasErrors()) {
-            System.out.println("createacount");
-            registered = createUserAccount(accountDto, result);
+            User account = createUserAccount(accountDto, result);
+            if (account == null)  {
+                result.rejectValue("email", "message.regError");
+            }
+            viewName = "successRegister";
         }
-        if (registered == null) {
-            result.rejectValue("email", "message.regError");
-        }
-        if (result.hasErrors()) {
-            System.out.println("error");
-            return new ModelAndView("register", "user", accountDto);
 
-        }
-        else {
-            System.out.println("udalo sie");
-            return new ModelAndView("successRegister", "user", accountDto);
+        return new ModelAndView(viewName, "user", accountDto);
 
-
-        }
     }
 
     private User createUserAccount(UserDto accountDto, BindingResult result) {
-        User registered = null;
         try {
-            UserService service = new UserService();
-            registered = service.registerNewUserAccount(accountDto);
+            return service.registerNewUserAccount(accountDto);
         } catch (EmailExistsException e) {
+            logger.error(e.getMessage(), e);
             return null;
         }
-        return registered;
     }
 
 }

@@ -9,5 +9,11 @@ import pl.mnowicka.autobus.entities.User;
  */
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
-    public User findByEmail(String email);
+
+
+    User findByEmail(String email);
+    User findOneByUsername(String username);
+    User findOneByEmail(String email);
+    User findOneByUsernameOrEmail(String username, String email);
+
 }

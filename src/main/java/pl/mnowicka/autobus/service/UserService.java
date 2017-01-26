@@ -1,9 +1,12 @@
-package pl.mnowicka.autobus;
+package pl.mnowicka.autobus.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import pl.mnowicka.autobus.domain.UserDto;
 import pl.mnowicka.autobus.entities.User;
 import pl.mnowicka.autobus.repositories.UserRepository;
 
@@ -12,32 +15,48 @@ import pl.mnowicka.autobus.repositories.UserRepository;
  */
 @Service
 public class UserService implements IUserService {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
+
     @Autowired
     private UserRepository repository;
+
+    public void setRepository(UserRepository repository) {
+        this.repository = repository;
+    }
 
     @Transactional
     @Override
     public User registerNewUserAccount(UserDto accountDto) throws EmailExistsException {
 
+        logger.info("Creating new user account...");
         if (emailExist(accountDto.getEmail())) {
+            logger.error("Account already exists with email "+accountDto.getEmail());
             throw new EmailExistsException(
-                    "There is an account with that email adress: "
-                            +  accountDto.getEmail());
+                    "There is an account with that email address: "
+                            + accountDto.getEmail());
         }
+
         User user = new User();
         user.setUsername(accountDto.getUsername());
         user.setSurname(accountDto.getSurname());
         user.setPassword(accountDto.getPassword());
         user.setEmail(accountDto.getEmail());
+        user.setPhone(accountDto.getPhone());
+
 //        user.setUserRolesById(Acc);
         return repository.save(user);
 
     }
     private boolean emailExist(String email) {
+        System.out.println("weszlo dp emailexists");
+
         User user = repository.findByEmail(email);
         if (user != null) {
+            System.out.println("wuser != null");
             return true;
         }
+        System.out.println("user == null");
         return false;
     }
 }

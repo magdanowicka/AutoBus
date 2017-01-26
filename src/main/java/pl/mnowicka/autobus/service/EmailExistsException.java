@@ -1,4 +1,4 @@
-package pl.mnowicka.autobus;
+package pl.mnowicka.autobus.service;
 
 /**
  * Created by magda on 2017-01-24.
