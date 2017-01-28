@@ -31,10 +31,6 @@ public class VerificationToken {
     private Date expiryDate;
     private boolean verified;
 
-//    public VerificationToken() {
-//        super();
-//
-//    }
 
     public VerificationToken(String token, User user) {
         super();
@@ -44,7 +40,15 @@ public class VerificationToken {
         this.verified = false;
     }
 
+    public boolean isVerified() {
+        return verified;
+    }
 
+    public void setVerified(boolean verified) {
+        this.verified = verified;
+    }
+
+    protected VerificationToken(){}
 
     private Date calculateExpiryDate(int expiryTimeInMinutes) {
 
