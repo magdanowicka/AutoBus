@@ -3,6 +3,7 @@ package pl.mnowicka.autobus.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +27,9 @@ public class UserService implements IUserService {
     @Autowired
     private VerificationTokenRepository tokenRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
     public void setRepository(UserRepository repository) {
         this.repository = repository;
@@ -46,7 +50,7 @@ public class UserService implements IUserService {
         User user = new User();
         user.setUsername(accountDto.getUsername());
         user.setSurname(accountDto.getSurname());
-        user.setPassword(accountDto.getPassword());
+        user.setPassword(passwordEncoder.encode(accountDto.getPassword()));
         user.setEmail(accountDto.getEmail());
         user.setPhone(accountDto.getPhone());
 
