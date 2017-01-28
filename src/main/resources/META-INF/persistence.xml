@@ -7,7 +7,7 @@
         <class>pl.mnowicka.autobus.entities.TicketState</class>
         <class>pl.mnowicka.autobus.entities.User</class>
         <class>pl.mnowicka.autobus.entities.UserRoles</class>
-
+        <class>pl.mnowicka.autobus.entities.VerificationToken</class>
         <properties>
             <property name="eclipselink.jdbc.url" value="jdbc:postgresql://localhost:5432/AutoBus"/>
             <property name="eclipselink.jdbc.driver" value="org.postgresql.Driver"/>

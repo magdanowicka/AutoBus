@@ -20,9 +20,10 @@ public class User {
     private List<Ticket> userTicketsById;
     private List<UserRoles> rolesByUserId;
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_generator")
-    @SequenceGenerator(name="user_id_generator", sequenceName = "user_id_seq", initialValue=100, allocationSize=50)
+    @SequenceGenerator(name="user_id_generator", sequenceName = "user_id_seq", initialValue=2, allocationSize=1)
     @Column(name = "id", updatable = false, nullable = false)
     public int getId() {
         return id;
@@ -142,6 +143,8 @@ public class User {
         this.rolesByUserId = rolesByUserId;
     }
 
+
+
 //    @ManyToOne
 //    @JoinColumn(name = "id", referencedColumnName = "user_id", nullable = false)
 //    public UserRoles getUserRolesById() {
@@ -151,4 +154,5 @@ public class User {
 //    public void setUserRolesById(UserRoles userRolesById) {
 //        this.userRolesById = userRolesById;
 //    }
+
 }

@@ -32,7 +32,7 @@ public class RegistrationListener extends JavaMailSenderImpl implements Applicat
 
         String token = UUID.randomUUID().toString();
 
-        //service.createVerificationToken(user, token);
+        service.createVerificationToken(user, token);
 
 
         String recipientAddress = user.getEmail();
