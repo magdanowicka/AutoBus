@@ -18,7 +18,6 @@ public class User {
     private String phone;
     private boolean enabled;
     private List<Ticket> userTicketsById;
-    //private UserRoles userRolesById;
     private List<UserRoles> rolesByUserId;
 
     @Id
@@ -92,6 +91,8 @@ public class User {
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
+
+
 
     @Override
     public boolean equals(Object o) {

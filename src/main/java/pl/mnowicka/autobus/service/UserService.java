@@ -8,7 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pl.mnowicka.autobus.domain.UserDto;
 import pl.mnowicka.autobus.entities.User;
+import pl.mnowicka.autobus.entities.VerificationToken;
 import pl.mnowicka.autobus.repositories.UserRepository;
+import pl.mnowicka.autobus.repositories.VerificationTokenRepository;
 
 /**
  * Created by magda on 2017-01-24.
@@ -20,6 +22,10 @@ public class UserService implements IUserService {
 
     @Autowired
     private UserRepository repository;
+
+    @Autowired
+    private VerificationTokenRepository tokenRepository;
+
 
     public void setRepository(UserRepository repository) {
         this.repository = repository;
@@ -58,5 +64,29 @@ public class UserService implements IUserService {
         }
         System.out.println("user == null");
         return false;
+    }
+
+    @Override
+    public User getUser(String verificationToken) {
+        User user = tokenRepository.findByToken(verificationToken).getUser();
+        return user;
+    }
+
+    @Override
+    public VerificationToken getVerificationToken(String VerificationToken) {
+        return tokenRepository.findByToken(VerificationToken);
+    }
+
+    @Override
+    public void saveRegisteredUser(User user) {
+        repository.save(user);
+    }
+
+    @Override
+    public void createVerificationToken(User user, String token) {
+        System.out.println("weszlo do create veri token");
+        VerificationToken myToken = new VerificationToken(token, user);
+        System.out.println("myToken:" + myToken);
+        tokenRepository.save(myToken);
     }
 }
