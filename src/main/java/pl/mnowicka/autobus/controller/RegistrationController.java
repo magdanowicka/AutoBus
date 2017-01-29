@@ -12,6 +12,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
+import pl.mnowicka.autobus.domain.SearchResult;
 import pl.mnowicka.autobus.entities.VerificationToken;
 import pl.mnowicka.autobus.service.EmailExistsException;
 import pl.mnowicka.autobus.domain.UserDto;
@@ -22,8 +23,7 @@ import pl.mnowicka.autobus.entities.User;
 
 
 import javax.validation.Valid;
-import java.util.Calendar;
-import java.util.Locale;
+import java.util.*;
 
 import static com.sun.org.apache.xml.internal.serializer.utils.Utils.messages;
 
@@ -72,11 +72,13 @@ public class RegistrationController {
                 return new ModelAndView("emailError", "user", accountDto);
             }
             viewName = "successRegister";
+
         }
 
         return new ModelAndView(viewName, "user", accountDto);
 
     }
+
 
     private User createUserAccount(UserDto accountDto, BindingResult result) {
         try {
