@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/home")
+                .loginPage("/login")
                 .permitAll()
                 .and()
                 .logout()
@@ -48,7 +48,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication().dataSource(this.dataSource)
                 .usersByUsernameQuery("SELECT email, password, enabled FROM public.user where email=?")
                 .authoritiesByUsernameQuery(
-                        "SELECT email, role from public.user AS us INNER JOIN public.user_roles AS ur ON (ur.user_id = us.id) WHERE us.email=?");
+                        "SELECT email, role from public.user AS us INNER JOIN public.user_roles AS ur ON (ur.user_id = us.id) WHERE us.email=?")
+                .passwordEncoder(passwordEncoder());
 
     }
 
