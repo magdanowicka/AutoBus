@@ -47,21 +47,25 @@ public class SearchController {
      *
      * @param q The search query.
      */
-    @RequestMapping("/searchTest")
-    public String search(String q, Model model) {
+    @RequestMapping(value = "/searchTest", method = RequestMethod.GET)
+
+    public ModelAndView search(@RequestParam(value = "departure") String departure, @RequestParam(value = "destination") String destination) {
+//        List<SearchResult> results = new ArrayList<>();
+//    public String search(String q, Model model) {
         List<Route> searchResults = new ArrayList<>();
         try {
-            logger.info("searchQuery: "+q);
-            searchResults = routeRepository.findByDepartureLike(q);
+            logger.info("searchQuery: " + destination + departure);
+            searchResults = routeRepository.findByDepartureLike(departure);
 
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             logger.error(ex.getMessage(), ex);
         }
-        model.addAttribute("searchResults", searchResults);
-        return "search";
-    }
 
+        ModelAndView mav = new ModelAndView("search");
+        mav.addObject("searchResults", searchResults);
+        return mav;
+
+    }
 
 
 }
