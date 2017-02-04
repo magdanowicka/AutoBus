@@ -61,7 +61,7 @@ public class SearchController {
             logger.error(ex.getMessage(), ex);
         }
 
-        ModelAndView mav = new ModelAndView("search");
+        ModelAndView mav = new ModelAndView("results");
         mav.addObject("searchResults", searchResults);
         return mav;
 

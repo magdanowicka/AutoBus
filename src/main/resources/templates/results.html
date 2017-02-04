@@ -50,40 +50,60 @@
 
     <div class="row" style="text-align: center">
         <div class="col-md-8">
-            <table class="table table-hover" style="    background-color: #85adad;" >
-                <thead>
-                <tr style="    background-color: #303333;  color: white;">
-                    <th>Odjazd</th>
-                    <th>Przyjazd</th>
-                    <th>Czas podróży</th>
-                    <th>Wolne miejsca</th>
-                    <th>Cena</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr style="text-decoration: none;">
-                    <td><a href="bus"><b>6:00</b> - 20.10.2016 Białystok</a></td>
-                    <td><a href="bus"><b>9:20</b> - 20.10.2016 Warszawa</a></td>
-                    <td><a href="bus">3h 20min</a></td>
-                    <td><a href="bus">13</a></td>
-                    <td><a href="bus"><b>20,00</b></a></td>
-                </tr>
-                <tr>
-                    <td><b>12:30</b> - 20.10.2016 Białystok</td>
-                    <td><b>15:45</b> - 20.10.2016 Warszawa</td>
-                    <td>3h 15min</td>
-                    <td>41</td>
-                    <td><b>10,00</b> </td>
-                </tr>
-                <tr>
-                    <td><b>8:30</b> - 20.10.2016 Białystok</td>
-                    <td><b>21:45</b> - 20.10.2016 Warszawa</td>
-                    <td>3h 15min</td>
-                    <td>26</td>
-                    <td><b>15,00</b> </td>
-                </tr>
-                </tbody>
-            </table>
+                <table class="table table-hover" style="    background-color: #85adad;" >
+                    <thead>
+                    <tr style="    background-color: #303333;  color: white;">
+                        <th>Odjazd</th>
+                        <th>Przyjazd</th>
+
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="searchResult : ${searchResults}">
+
+                        <td th:text="${searchResult.departure}">1</td>
+
+                        <td th:text="${searchResult.destination}">1</td>
+
+
+                    </tr>
+                    </tbody>
+                </table>
+            <!--<table class="table table-hover" style="    background-color: #85adad;" >-->
+                <!--<thead>-->
+                <!--<tr style="    background-color: #303333;  color: white;">-->
+                    <!--<th>Odjazd</th>-->
+                    <!--<th>Przyjazd</th>-->
+                    <!--<th>Czas podróży</th>-->
+                    <!--<th>Wolne miejsca</th>-->
+                    <!--<th>Cena</th>-->
+                <!--</tr>-->
+                <!--</thead>-->
+                <!--<tbody>-->
+                <!--<tr style="text-decoration: none;">-->
+                    <!--<td><a href="bus"><b>6:00</b> - 20.10.2016 Białystok</a></td>-->
+                    <!--<td><a href="bus"><b>9:20</b> - 20.10.2016 Warszawa</a></td>-->
+                    <!--<td><a href="bus">3h 20min</a></td>-->
+                    <!--<td><a href="bus">13</a></td>-->
+                    <!--<td><a href="bus"><b>20,00</b></a></td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td><b>12:30</b> - 20.10.2016 Białystok</td>-->
+                    <!--<td><b>15:45</b> - 20.10.2016 Warszawa</td>-->
+                    <!--<td>3h 15min</td>-->
+                    <!--<td>41</td>-->
+                    <!--<td><b>10,00</b> </td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td><b>8:30</b> - 20.10.2016 Białystok</td>-->
+                    <!--<td><b>21:45</b> - 20.10.2016 Warszawa</td>-->
+                    <!--<td>3h 15min</td>-->
+                    <!--<td>26</td>-->
+                    <!--<td><b>15,00</b> </td>-->
+                <!--</tr>-->
+                <!--</tbody>-->
+            <!--</table>-->
         </div>
     </div>
 </div>
