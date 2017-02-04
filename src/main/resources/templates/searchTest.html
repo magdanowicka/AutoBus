@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Hibernate Search | Netgloo Blog</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+
+<ol>
+    <li th:each="route : ${searchResults}">
+        <b><span th:text="${route.departue}"></span></b> -
+        <span th:text="${route.destination}"></span> -
+    </li>
+</ol>
+
+<p th:if="${searchResults.isEmpty()}">
+    <strong>Hint</strong>: the query "<a href='/searchTest?q=amy'>amy</a>"
+    should return some results.
+</p>
+
+<br />
+<hr />
+Proudly handcrafted by
+<a href='http://netgloo.com/en'>Netgloo</a>
+
+</body>
+
+</html>

@@ -2,6 +2,8 @@ package pl.mnowicka;
 
 import javax.sql.DataSource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    public static final Logger logger = LoggerFactory.getLogger(WebSecurityConfig.class);
 
 
     @Override
@@ -45,12 +48,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
 
+        logger.info("tu");
+
         auth.jdbcAuthentication().dataSource(this.dataSource)
                 .usersByUsernameQuery("SELECT email, password, enabled FROM public.user where email=?")
                 .authoritiesByUsernameQuery(
                         "SELECT email, role from public.user AS us INNER JOIN public.user_roles AS ur ON (ur.user_id = us.id) WHERE us.email=?")
-                .passwordEncoder(passwordEncoder());
-
+//                .passwordEncoder(passwordEncoder());
+;
     }
 
     @Bean

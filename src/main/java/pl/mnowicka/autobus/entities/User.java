@@ -3,6 +3,9 @@ package pl.mnowicka.autobus.entities;
 import javax.persistence.*;
 import java.util.List;
 
+import org.hibernate.id.enhanced.SequenceStyleGenerator;
+
+
 /**
  * Created by magda on 2017-01-26.
  */
@@ -19,6 +22,8 @@ public class User {
     private boolean enabled;
     private List<Ticket> userTicketsById;
     private List<UserRoles> rolesByUserId;
+
+
 
 
     @Id
