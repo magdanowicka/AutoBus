@@ -2,6 +2,9 @@ package pl.mnowicka.autobus.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.security.Timestamp;
+import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,8 +14,8 @@ import java.util.List;
 @Table(name = "concrete_travel", schema = "public", catalog = "AutoBus")
 public class ConcreteTravel {
     private int id;
-    private Serializable departureTime;
-    private Serializable arrivalTime;
+    private Date departureTime;
+    private Date arrivalTime;
     private String status;
     private Integer routeId;
     private Route routeByRouteId;
@@ -30,21 +33,21 @@ public class ConcreteTravel {
 
     @Basic
     @Column(name = "departure_time")
-    public Serializable getDepartureTime() {
+    public Date getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(Serializable departureTime) {
+    public void setDepartureTime(Date departureTime) {
         this.departureTime = departureTime;
     }
 
     @Basic
     @Column(name = "arrival_time")
-    public Serializable getArrivalTime() {
+    public Date getArrivalTime() {
         return arrivalTime;
     }
 
-    public void setArrivalTime(Serializable arrivalTime) {
+    public void setArrivalTime(Date arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 

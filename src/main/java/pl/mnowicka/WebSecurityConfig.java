@@ -48,7 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
 
-        logger.info("tu");
+
 
         auth.jdbcAuthentication().dataSource(this.dataSource)
                 .usersByUsernameQuery("SELECT email, password, enabled FROM public.user where email=?")

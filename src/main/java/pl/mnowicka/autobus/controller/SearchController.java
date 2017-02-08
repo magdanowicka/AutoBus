@@ -3,18 +3,22 @@ package pl.mnowicka.autobus.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
-import org.springframework.ui.Model;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import pl.mnowicka.autobus.domain.SearchResult;
+
 import pl.mnowicka.autobus.entities.ConcreteTravel;
 import pl.mnowicka.autobus.entities.Route;
+
 import pl.mnowicka.autobus.repositories.ConcreteTravelRepository;
 import pl.mnowicka.autobus.repositories.RouteRepository;
-import pl.mnowicka.autobus.search.TravelSearch;
 
+
+import java.security.Timestamp;
 import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.List;
 
@@ -23,39 +27,27 @@ public class SearchController {
 
     public static final Logger logger = LoggerFactory.getLogger(SearchController.class);
 
-//    @Autowired
-//    private TravelSearch travelSearch;
 
 
     @Autowired
     RouteRepository routeRepository;
 
-
-    /**
-     * Index main page.
-     */
-    @RequestMapping("/")
-    @ResponseBody
-    public String index() {
-        return "Try to go here: " +
-                "<a href='/searchTest?q=hola'>/searchTest?q=hola</a>";
-    }
+    @Autowired
+    ConcreteTravelRepository concreteTravelRepository;
 
 
-    /**
-     * Show search results for the given query.
-     *
-     * @param q The search query.
-     */
     @RequestMapping(value = "/searchTest", method = RequestMethod.GET)
 
-    public ModelAndView search(@RequestParam(value = "departure") String departure, @RequestParam(value = "destination") String destination) {
-//        List<SearchResult> results = new ArrayList<>();
-//    public String search(String q, Model model) {
-        List<Route> searchResults = new ArrayList<>();
+    //public ModelAndView search(@RequestParam(value = "departure") String departure, @RequestParam(value = "destination") String destination,@RequestParam(value = "departureTime") Date departureTime) {
+        public ModelAndView search(@RequestParam(value = "departureTime") @DateTimeFormat(iso=ISO.DATE) Date departureTime) {
+
+            List<ConcreteTravel> searchResults = new ArrayList<>();
+        //List<Route> searchResults = new ArrayList<>();
         try {
-            logger.info("searchQuery: " + destination + departure);
-            searchResults = routeRepository.findByDepartureLike(departure);
+            logger.info("dearture time" + departureTime);
+            //logger.info("searchQuery: " + destination + departure);
+            //searchResults = routeRepository.findByDepartureAndDestination(departure, destination);
+            searchResults = concreteTravelRepository.findByDepartureTimeGreaterThan(departureTime);
 
         } catch (Exception ex) {
             logger.error(ex.getMessage(), ex);
@@ -63,6 +55,7 @@ public class SearchController {
 
         ModelAndView mav = new ModelAndView("results");
         mav.addObject("searchResults", searchResults);
+
         return mav;
 
     }
