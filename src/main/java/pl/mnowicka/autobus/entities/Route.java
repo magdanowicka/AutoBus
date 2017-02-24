@@ -15,8 +15,11 @@ public class Route {
     private String length;
     private List<ConcreteTravel> concreteTravelsById;
 
+
     @Id
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "route_id_generator")
+    @SequenceGenerator(name="route_id_generator", sequenceName = "route_id_seq", initialValue=2, allocationSize=1)
+    @Column(name = "id", updatable = false, nullable = false)
     public int getId() {
         return id;
     }
@@ -24,6 +27,16 @@ public class Route {
     public void setId(int id) {
         this.id = id;
     }
+
+//    @Id
+//    @Column(name = "id")
+//    public int getId() {
+//        return id;
+//    }
+//
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 
     @Basic
     @Column(name = "departure")

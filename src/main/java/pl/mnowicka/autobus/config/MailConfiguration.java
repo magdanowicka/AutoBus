@@ -1,4 +1,4 @@
-package pl.mnowicka.autobus.service;
+package pl.mnowicka.autobus.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

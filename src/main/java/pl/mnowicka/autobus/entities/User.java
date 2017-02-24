@@ -23,9 +23,6 @@ public class User {
     private List<Ticket> userTicketsById;
     private List<UserRoles> rolesByUserId;
 
-
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_generator")
     @SequenceGenerator(name="user_id_generator", sequenceName = "user_id_seq", initialValue=2, allocationSize=1)

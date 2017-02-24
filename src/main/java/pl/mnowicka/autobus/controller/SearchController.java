@@ -39,15 +39,23 @@ public class SearchController {
     @RequestMapping(value = "/searchTest", method = RequestMethod.GET)
 
     //public ModelAndView search(@RequestParam(value = "departure") String departure, @RequestParam(value = "destination") String destination,@RequestParam(value = "departureTime") Date departureTime) {
-        public ModelAndView search(@RequestParam(value = "departureTime") @DateTimeFormat(iso=ISO.DATE) Date departureTime) {
+        public ModelAndView search(@RequestParam(value = "departure") String departure, @RequestParam(value = "destination") String destination,@RequestParam(value = "departureTime") @DateTimeFormat(iso=ISO.DATE) Date departureTime) {
 
             List<ConcreteTravel> searchResults = new ArrayList<>();
-        //List<Route> searchResults = new ArrayList<>();
+
+
+
+            Route route = routeRepository.findByDepartureAndDestination(departure, destination);
+            Integer id = route.getId();
+            logger.info("route results" + id);
+
+
         try {
             logger.info("dearture time" + departureTime);
             //logger.info("searchQuery: " + destination + departure);
             //searchResults = routeRepository.findByDepartureAndDestination(departure, destination);
-            searchResults = concreteTravelRepository.findByDepartureTimeGreaterThan(departureTime);
+            //searchResults = concreteTravelRepository.findByDepartureTimeGreaterThan(departureTime);
+            searchResults = concreteTravelRepository.findByRouteByRouteId(id);
 
         } catch (Exception ex) {
             logger.error(ex.getMessage(), ex);

@@ -1,4 +1,4 @@
-package pl.mnowicka;
+package pl.mnowicka.autobus.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,5 +22,6 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         registry.addViewController("/register-success").setViewName("register-success");
         registry.addViewController("/error").setViewName("error");
         registry.addViewController("/searchTest").setViewName("searchTest");
+        registry.addViewController("/adminPage").setViewName("adminPage");
     }
 }
