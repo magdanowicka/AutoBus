@@ -2,13 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:form="http://www.springframework.org/tags/form" xmlns:spring="http://www.springframework.org/tags">
-<head>
-    <title>AutoBus</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../css/modern-business.css"/>
-    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="../css/style.css"/>
-</head>
+<head th:replace="fragments/head :: head"></head>
 <body>
 
 <div class="container">
@@ -46,12 +40,10 @@
     </div>
 </div>
 
-<footer class="footer">
-    <div class="container footer-prop">
-        <p class="text-muted">AutoBus @ 2017</p>
-    </div>
-</footer>
+<div th:replace="fragments/footer :: footer"></div>
+
 <script src="../js/jquery-3.1.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
+
 </body>
 </html>

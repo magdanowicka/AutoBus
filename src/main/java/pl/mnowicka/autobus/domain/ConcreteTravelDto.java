@@ -32,6 +32,10 @@ public class ConcreteTravelDto {
     @NotEmpty
     private Route routeByRouteId;
 
+    @NotNull
+    @NotEmpty
+    private String status;
+
     public String getStatus() {
         return status;
     }
@@ -39,11 +43,6 @@ public class ConcreteTravelDto {
     public void setStatus(String status) {
         this.status = status;
     }
-
-    @NotNull
-    @NotEmpty
-    private String status;
-
 
     public Date getDepartureTime() {
         return departureTime;
@@ -98,6 +97,4 @@ public class ConcreteTravelDto {
     public void setRouteByRouteId(Route routeByRouteId) {
         this.routeByRouteId = routeByRouteId;
     }
-
-
 }

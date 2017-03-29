@@ -3,19 +3,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:form="http://www.springframework.org/tags/form" xmlns:spring="http://www.springframework.org/tags"
       xmlns:fmt="http://jboss.org/xml/ns/javax/validation/mapping">
-<setBundle basename="messages" />
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII"/>
-    <title>Expired</title>
-</head>
+<setBundle basename="messages"/>
+<head th:replace="fragments/head :: head"></head>
 <body>
+
+<div th:replace="fragments/header :: header"></div>
 
 <h1>${message}</h1>
 <a href="/register">
 
-<fmt:message code="label.form.loginSignUp"></fmt:message>
+    <fmt:message code="label.form.loginSignUp"></fmt:message>
 </a>
     
-
+<div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

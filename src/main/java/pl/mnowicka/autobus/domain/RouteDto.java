@@ -21,7 +21,6 @@ public class RouteDto {
     @NotEmpty
     private String length;
 
-
     public String getDeparture() {
         return departure;
     }
@@ -34,7 +33,6 @@ public class RouteDto {
         return length;
     }
 
-
     public void setDeparture(String departure) {
         this.departure = departure;
     }
@@ -46,5 +44,4 @@ public class RouteDto {
     public void setLength(String length) {
         this.length = length;
     }
-
 }

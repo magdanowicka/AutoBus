@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 @Service("sendEmailTicket")
 public class SendEmailTicket extends JavaMailSenderImpl {
 
-
     @Autowired
     private MailSender emailSender;
 

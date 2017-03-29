@@ -51,7 +51,6 @@ public class RegistrationController {
         String viewName = ViewsAggregate.REGISTER;
         if (!result.hasErrors()) {
             User account = createUserAccount(accountDto, result);
-
             if (account == null) {
                 result.rejectValue("email", "message.regError");
             }
@@ -62,10 +61,8 @@ public class RegistrationController {
                 logger.error("Bład w wysyłaniu maila");
                 return new ModelAndView(ViewsAggregate.EMAILERROR, "user", accountDto);
             }
-
             viewName = ViewsAggregate.SUCCESSREGISTER;
         }
-
         return new ModelAndView(viewName, "user", accountDto);
     }
 

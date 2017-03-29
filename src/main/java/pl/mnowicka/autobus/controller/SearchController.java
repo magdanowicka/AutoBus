@@ -40,9 +40,8 @@ public class SearchController {
     public ModelAndView search(@RequestParam(value = "departure") String departure, @RequestParam(value = "destination") String destination, @RequestParam(value = "departureTime") @DateTimeFormat(iso = ISO.DATE) Date departureTime, String pSearchTerm, HttpServletRequest request, HttpServletResponse response) {
 
         List<ConcreteTravel> searchResults = new ArrayList<>();
-
-        String odjazd = departure;
-        String przyjazd = destination;
+        String departureCity = departure;
+        String destinationCity = destination;
 
         Route route = routeRepository.findByDepartureAndDestination(departure, destination);
         Integer id = route.getId();
@@ -54,17 +53,16 @@ public class SearchController {
         } catch (Exception ex) {
             logger.error(ex.getMessage(), ex);
         }
-
         ModelAndView mav = new ModelAndView(ViewsAggregate.SEARCHRESULTS, "searchResults", searchResults);
 
         mav.addObject("searchResults", searchResults);
-        mav.addObject("odjazd", odjazd);
-        mav.addObject("przyjazd", przyjazd);
+        mav.addObject("departureCity", departureCity);
+        mav.addObject("destinationCity", destinationCity);
 
-        if (id != 1) return new ModelAndView(ViewsAggregate.NOMATCH, "searchResults", searchResults);
+        if (id != 1) {
+            return new ModelAndView(ViewsAggregate.NOMATCH, "searchResults", searchResults);
+        }
         return mav;
     }
-
-
 }
 

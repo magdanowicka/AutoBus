@@ -25,9 +25,6 @@ import javax.validation.Valid;
  */
 public class TravelController {
 
-    private static final Logger logger = LoggerFactory.getLogger(RouteController.class);
-
-
     @Autowired
     private ConcreteTravelService service;
 

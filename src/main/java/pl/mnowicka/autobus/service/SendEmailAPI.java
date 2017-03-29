@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 @Service("sendEmail")
 public class SendEmailAPI extends JavaMailSenderImpl {
 
-
     @Autowired
     private MailSender emailSender;
 

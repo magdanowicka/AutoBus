@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head>
-    <title>AutoBus</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../css/modern-business.css"/>
-    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-</head>
+<head th:replace="fragments/head :: head"></head>
 <body>
+<div th:replace="fragments/header :: header"></div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
 <script src="../js/jquery-3.1.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/jquery.maphilights.js"></script>
+
 </body>
 </html>

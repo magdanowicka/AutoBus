@@ -8,10 +8,10 @@ import pl.mnowicka.autobus.entities.User;
 import java.util.Locale;
 
 public class OnRegistrationCompleteEvent extends ApplicationEvent {
+
     private final String appUrl;
     private final Locale locale;
     private final User user;
-
 
     public OnRegistrationCompleteEvent(
             User user, Locale locale, String appUrl) {
@@ -20,7 +20,6 @@ public class OnRegistrationCompleteEvent extends ApplicationEvent {
         this.locale = locale;
         this.appUrl = appUrl;
     }
-
 
     public String getAppUrl() {
         return appUrl;
@@ -33,6 +32,4 @@ public class OnRegistrationCompleteEvent extends ApplicationEvent {
     public User getUser() {
         return user;
     }
-
-
 }

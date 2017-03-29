@@ -46,13 +46,11 @@ public class RouteController {
                                  BindingResult result, WebRequest request, Errors errors) {
 
         String viewName = ViewsAggregate.ADMINPAGE;
-
         if (!result.hasErrors()) {
             Route trasa = addRoute(routeDto, result);
             Route trasaPowrotna = addBackRoute(routeDto, result);
             viewName = ViewsAggregate.HOME;
         }
-
         return new ModelAndView(viewName, "route", routeDto);
     }
 
