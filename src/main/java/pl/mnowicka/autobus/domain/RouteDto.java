@@ -22,7 +22,7 @@ public class RouteDto {
     private String length;
 
 
-    private boolean selected;
+
 
 
     public String getDeparture() {
@@ -37,7 +37,6 @@ public class RouteDto {
         return length;
     }
 
-    public boolean isSelected() { return selected; }
 
 
     public void setDeparture(String departure) {
@@ -51,7 +50,5 @@ public class RouteDto {
     public void setLength(String length) {
         this.length = length;
     }
-
-    public void setSelected(boolean selected) { this.selected = selected; }
 
 }

@@ -27,15 +27,15 @@ import javax.validation.Valid;
  * Created by magda on 2017-02-23.
  */
 @Controller
-public class AdminController {
+public class RouteController {
 
-    private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
+    private static final Logger logger = LoggerFactory.getLogger(RouteController.class);
 
 
     @Autowired
     private RouteService service;
 
-    @RequestMapping(value = "/adminPage", method = RequestMethod.GET)
+    @RequestMapping(value = "/addRoute", method = RequestMethod.GET)
     public String showRegistrationForm(WebRequest request, Model model) {
 
         RouteDto routeDto = new RouteDto();
@@ -43,7 +43,7 @@ public class AdminController {
         return "adminPage";
     }
 
-    @RequestMapping(value = "/adminPage", method = RequestMethod.POST)
+    @RequestMapping(value = "/addRoute", method = RequestMethod.POST)
     @ResponseBody
     public ModelAndView addRoute(@ModelAttribute("route") @Valid RouteDto routeDto,
                                             BindingResult result, WebRequest request, Errors errors)  {
@@ -51,14 +51,10 @@ public class AdminController {
         String viewName = "adminPage";
 
 
-        boolean selected = routeDto.isSelected();
-
-        logger.info("is selected: " + selected);
-
         if (!result.hasErrors()) {
 
             Route trasa = addRoute(routeDto, result);
-
+            Route trasaPowrotna = addBackRoute(routeDto, result);
 
             viewName = "home";
 
@@ -70,8 +66,10 @@ public class AdminController {
 
 
     private Route addRoute(RouteDto routeDto, BindingResult result) {
-
             return service.addNewRoute(routeDto);
+    }
+    private Route addBackRoute(RouteDto routeDto, BindingResult result) {
+        return service.addNewBackRoute(routeDto);
     }
 
 

@@ -35,6 +35,8 @@ public class UserService implements IUserService {
         this.repository = repository;
     }
 
+
+
     @Transactional
     @Override
     public User registerNewUserAccount(UserDto accountDto) throws EmailExistsException {
@@ -51,13 +53,18 @@ public class UserService implements IUserService {
         user.setUsername(accountDto.getUsername());
         user.setSurname(accountDto.getSurname());
         user.setPassword(passwordEncoder.encode(accountDto.getPassword()));
+
         user.setEmail(accountDto.getEmail());
         user.setPhone(accountDto.getPhone());
+        user.setEnabled(true);
 
 //        user.setUserRolesById(Acc);
         return repository.save(user);
 
     }
+
+
+
     private boolean emailExist(String email) {
         System.out.println("weszlo dp emailexists");
 
@@ -73,6 +80,8 @@ public class UserService implements IUserService {
     @Override
     public User getUser(String verificationToken) {
         User user = tokenRepository.findByToken(verificationToken).getUser();
+        user.setEnabled(true);
+        repository.save(user);
         return user;
     }
 

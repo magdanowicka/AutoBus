@@ -43,5 +43,20 @@ public class RouteService implements IRouteService {
 
     }
 
+    @Transactional
+    @Override
+    public Route addNewBackRoute(RouteDto routeDto) {
+
+        Route route = new Route();
+        route.setDeparture(routeDto.getDestination());
+        route.setDestination(routeDto.getDeparture());
+        route.setLength(routeDto.getLength());
+
+        return repository.save(route);
+
+    }
+
+
+
 
 }

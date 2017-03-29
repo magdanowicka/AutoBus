@@ -3,6 +3,7 @@ package pl.mnowicka.autobus.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -32,7 +33,7 @@ public class MailConfiguration {
     @Value("${mail.password}")
     private String password;
 
-
+    @Primary
     @Bean
     public JavaMailSender javaMailSender() {
 

@@ -145,8 +145,6 @@ public class User {
         this.rolesByUserId = rolesByUserId;
     }
 
-
-
 //    @ManyToOne
 //    @JoinColumn(name = "id", referencedColumnName = "user_id", nullable = false)
 //    public UserRoles getUserRolesById() {

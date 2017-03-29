@@ -37,7 +37,7 @@ public class RegistrationListener extends JavaMailSenderImpl implements Applicat
 
         String recipientAddress = user.getEmail();
 
-        String subject = "Registration Confirmation";
+        String subject = "AutoBus - Potwierdzenie rejestracji konta";
         String confirmationUrl
                 = event.getAppUrl() + "/regitrationConfirm.html?token=" + token;
 
@@ -47,7 +47,7 @@ public class RegistrationListener extends JavaMailSenderImpl implements Applicat
         email.setTo(recipientAddress);
         email.setSubject(subject);
 
-        email.setText("kurwa kliknij" + "http://localhost:8080" + confirmationUrl);
+        email.setText("Kliknij w link, aby aktywować swoje konto: " + confirmationUrl);
 
         mailSender.send(email);
     }

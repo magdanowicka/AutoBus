@@ -3,30 +3,11 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <title>AutoBus</title>
-    <!-- jQuery -->
-    <!--<script type="text/plain" src="../static/js/jquery.js"></script>-->
 
-    <!--&lt;!&ndash; Bootstrap Core JavaScript &ndash;&gt;-->
-    <!--<script type="text/plain" src="../static/js/bootstrap.min.js"></script>-->
-    <!--<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>-->
-    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
-    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>-->
-    <!-- Bootstrap Core CSS -->
-    <!--&lt;!&ndash;<link  type="text/css" href="../static/css/bootstrap.min.css" rel="stylesheet"/>&ndash;&gt;-->
-    <!--&lt;!&ndash; Custom CSS &ndash;&gt;-->
-    <!--<link type="text/css" href="../static/css/modern-business.css" rel="stylesheet"/>-->
-
-    <!--&lt;!&ndash; Custom Fonts &ndash;&gt;-->
-    <!--<link  rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>-->
-    <!--<link  rel="stylesheet" href="http://localhost:8080/css/modern-business.css"/>-->
-
-    <!--<link href="http://localhost:8080/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>-->
     <link rel="stylesheet" href="http://localhost:8080/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="http://localhost:8080/css/modern-business.css"/>
     <link href="http://localhost:8080/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-    <link rel="icon" type="image/gif" href="http://localhost:8080/images/favicon.gif"/>
-    <!--<link content-type="text/css" href="../static/css/modern-business.css" rel="stylesheet"/>-->
-    <!--<script src="https://use.fontawesome.com/7902c030ba.js"></script>-->
+
 </head>
 <body>
 <!-- Navigation -->
@@ -41,10 +22,41 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="home">AutoBus</a>
+            <a class="navbar-brand" href="/">AutoBus</a>
         </div>
 
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
+            <ul class="nav navbar-nav navbar-right">
+
+                <li th:if="${#httpServletRequest.isUserInRole('ROLE_USER')}">
+                    <a href="userPage">Moje konto</a>
+                </li>
+                <li th:if="${#httpServletRequest.isUserInRole('ROLE_USER')}">
+                    <a href="/logout">Wyloguj</a>
+                </li>
+                <li th:if="${#httpServletRequest.isUserInRole('ROLE_USER')}">
+                    <a href="#" data-toggle="modal" data-target="#contact-modal">Kontakt</a>
+                </li>
+                <li th:if="${#httpServletRequest.isUserInRole('ROLE_ADMIN')}">
+                    <a href="adminPage">Administracja</a>
+                </li>
+                <li th:if="${#httpServletRequest.isUserInRole('ROLE_ADMIN')}">
+                    <a href="/logout">Wyloguj</a>
+                </li>
+
+                <li th:if="${#httpServletRequest.remoteUser}==null">
+                    <a href="login">Zaloguj</a>
+
+                </li>
+                <li th:if="${#httpServletRequest.remoteUser}==null">
+                    <a href="#" data-toggle="modal" data-target="#contact-modal">Kontakt</a>
+                </li>
+
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
     </div>
 
     <!-- /.container -->
@@ -53,51 +65,135 @@
 <div class="container">
 
 
+    <div class="row" style="    padding-top: 20px;    padding-bottom: 20px;">
+        <h1>Dodaj nową trasę</h1>
+    </div>
     <div class="row" style="background-color: #b4c1c1;">
 
-        <form modelAttribute="route" th:action="@{/adminPage}" method="post" class="form-horizontal" style="padding-top: 30px; ">
+
+        <form modelAttribute="route" th:action="@{/adminPage}" method="post" class="form-horizontal"
+              style="padding-top: 30px; ">
 
             <fieldset style="padding-right: 20px;">
-                <div class="form-group col-md-3" >
+                <div class="form-group col-md-3" style="margin-left: 10px;">
                     <label for="departure"> Miasto wyjazdu: </label> <input type="text" id="departure" name="departure"
-                                                                 class="form-control"/>
+                                                                            class="form-control"/>
                 </div>
-                <div class="form-group col-md-3">
-                    <label for="destination"> Miasto docelowe: </label> <input type="text" id="destination" name="destination"
-                                                                    class="form-control"/>
+                <div class="form-group col-md-3" style="margin-left: 5px;">
+                    <label for="destination"> Miasto docelowe: </label> <input type="text" id="destination"
+                                                                               name="destination"
+                                                                               class="form-control"/>
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-3" style="margin-left: 5px;">
                     <label for="length"> Długośc trasy w km: </label> <input type="text" id="length" name="length"
-                                                               class="form-control"/>
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="selected"> Trasa dwustronna: </label> <input type="radio" id="selected" name="selected" value="selected"
                                                                              class="form-control"/>
                 </div>
+
 
             </fieldset>
 
             <div class="form-group">
                 <div class="col-md-12">
                     <button type="submit" class="btn btn-primary"
-                            style="background-color: #85adad;border-color: #85adad;">
+                            style="background-color: #85adad;border-color: #85adad;margin:25px;">
                         Dodaj trasę
                     </button>
                 </div>
             </div>
 
         </form>
-
-
     </div>
 
+    <div class="row" style="    padding-top: 20px;    padding-bottom: 20px;">
+        <h1>Dodaj nowe połączenie</h1>
+    </div>
+    <div class="row" style="background-color: #b4c1c1;">
+
+        <form modelAttribute="concrete_travel" th:action="@{/adminPageTravel}" method="post" class="form-horizontal"
+              style="padding-top: 30px; ">
+
+            <fieldset style="padding-right: 20px;">
+                <div class="form-group col-md-3" style="margin-left: 10px;">
+                    <label for="departure"> Miasto wyjazdu: </label>
+                    <input type="text" id="dep" name="departure" class="form-control" list="citiesDep"/>
+                    <datalist id="citiesDep" name="cities">
+                        <option value="Białystok"></option>
+                        <option value="Lublin"></option>
+                        <option value="Wrocław"></option>
+                        <option value="Warszawa"></option>
+                    </datalist>
+                </div>
+                <div class="form-group col-md-3" style="margin-left: 5px;">
+                    <label for="destination"> Miasto docelowe: </label>
+                    <input type="text" id="dest" name="destination" class="form-control" list="citiesArr"/>
+                    <datalist id="citiesArr" name="cities">
+                        <option value="Białystok"></option>
+                        <option value="Lublin"></option>
+                        <option value="Wrocław"></option>
+                        <option value="Warszawa"></option>
+                    </datalist>
+
+                </div>
+
+                <div class="form-group col-md-3" style="margin-left: 5px;">
+                    <label for="departure_time"> Data i godzina wyjazdu: </label>
+                    <div class="input-group">
+                        <input type="text" id="departure_time" name="departure_time" class="form-control"/>
+                        <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button"><i class="fa fa-calendar"
+                                                                                     aria-hidden="true"></i></button>
+                        </span>
+                    </div>
+
+                </div>
+                <div class="form-group col-md-3" style="margin-left: 5px;">
+                    <label for="arrival_time"> Data i godzina przyjazdu: </label>
+                    <div class="input-group">
+                        <input type="text" id="arrival_time" name="arrival_time"
+                               class="form-control"/>
+                        <span class="input-group-btn">
+
+                                    <button class="btn btn-default" type="button"><i class="fa fa-calendar"
+                                                                                     aria-hidden="true"></i></button>
+                                </span>
+                    </div>
+                </div>
+
+
+            </fieldset>
+
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary"
+                            style="background-color: #85adad;border-color: #85adad;margin: 25px;">
+                        Dodaj połączenie
+                    </button>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+
+    <tbody>
+    <tr th:each="result : ${departures}">
+
+        <td th:text="${result.from}">from</td>
+
+        <td th:text="${result.to}">to</td>
+
+        <td th:text="${result.arrival}">arrival</td>
+
+    </tr>
+    </tbody>
 
 
 </div><!--/wrap-->
 
 <footer class="footer">
     <div class="container">
-        <p class="text-muted">AutoBus @ 2016</p>
+        <p class="text-muted">AutoBus @ 2017</p>
     </div>
 </footer>
 
@@ -106,8 +202,9 @@
 <!--&lt;!&ndash; Bootstrap Core JavaScript &ndash;&gt;-->
 <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
 <script src="http://localhost:8080/js/jquery-3.1.1.min.js"></script>
-<script src="http://localhost:8080/js/bootstrap.min.js"></script>
+<script src="http://localhost:8080/js/moment.js"></script>
 
+<script src="http://localhost:8080/js/bootstrap.min.js"></script>
 
 
 </body>

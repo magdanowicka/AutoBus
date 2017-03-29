@@ -24,6 +24,8 @@ import pl.mnowicka.autobus.entities.User;
 
 import javax.validation.Valid;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static com.sun.org.apache.xml.internal.serializer.utils.Utils.messages;
 
@@ -119,5 +121,7 @@ public class RegistrationController {
         serviceInterface.saveRegisteredUser(user);
         return "redirect:/login.html?lang=" + request.getLocale().getLanguage();
     }
+
+
 
 }

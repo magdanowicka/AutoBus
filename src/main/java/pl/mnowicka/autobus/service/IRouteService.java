@@ -12,5 +12,6 @@ import pl.mnowicka.autobus.entities.VerificationToken;
 public interface IRouteService {
 
     Route addNewRoute(RouteDto routeDto);
+    Route addNewBackRoute(RouteDto routeDto);
 
 }

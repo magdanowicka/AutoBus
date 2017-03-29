@@ -22,14 +22,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     public static final Logger logger = LoggerFactory.getLogger(WebSecurityConfig.class);
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
                 .antMatchers("/", "/css/**", "/font-awesome/**", "/fonts/**", "/images/**", "/js/**").permitAll()
                 .antMatchers("/", "/home", "/register", "/results", "/login", "/registrationConfirm**", "/successRegister").permitAll()
-                .antMatchers("/search","/searchTest","/adminPage").permitAll()
+                .antMatchers("/search","/searchTest","/adminPage","/userPage","/bus","/pom", "success","/searchresults", "/nomatch").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -52,7 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usersByUsernameQuery("SELECT email, password, enabled FROM public.user where email=?")
                 .authoritiesByUsernameQuery(
                         "SELECT email, role from public.user AS us INNER JOIN public.user_roles AS ur ON (ur.user_id = us.id) WHERE us.email=?")
-//                .passwordEncoder(passwordEncoder());
+    //            .passwordEncoder(passwordEncoder());
 ;
     }
 
@@ -60,7 +59,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 
 //    @Autowired
 //    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {

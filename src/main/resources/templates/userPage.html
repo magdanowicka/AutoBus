@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
-<head><title>AutoBus</title>
-    <!--<link  rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>-->
-    <!--<link  rel="stylesheet" href="http://localhost:8080/css/modern-business.css"/>-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>AutoBus</title>
 
     <link rel="stylesheet" href="http://localhost:8080/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="http://localhost:8080/css/modern-business.css"/>
     <link href="http://localhost:8080/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+
+
 </head>
 <body>
+<!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -20,7 +23,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="home">AutoBus</a>
+            <a class="navbar-brand" href="/">AutoBus</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -59,59 +62,82 @@
 
     <!-- /.container -->
 </nav>
+
 <div class="container">
 
+
     <div class="row" style="    padding-top: 20px;    padding-bottom: 20px;">
-        <h1>
-            Wynik dla tarsy: <b th:text="${odjazd}">1</b> - <b th:text="${przyjazd}">1</b>
-        </h1>
+        <h1>Edytuj profil</h1>
+    </div>
+    <div style="color:white;">
+        <span th:inline="text">[[${#httpServletRequest.remoteUser}]]</span>
+    </div>
+    <div class="row" style="background-color: #b4c1c1;">
+
+
+        <form modelAttribute="user" th:action="@{/email}" method="post" class="form-horizontal"
+              style="padding-top: 30px; ">
+
+            <fieldset style="padding-right: 20px;">
+                <div class="form-group col-md-3" style="margin-left: 10px;">
+                    <label for="email"> Edytuj e-mail: </label> <input type="text" id="email" name="email"
+                                                                class="form-control"/>
+                </div>
+                <div class="col-md-9">
+                    <button type="submit" class="btn btn-primary"
+                            style="background-color: #85adad;border-color: #85adad;margin:25px;">
+                        Edytuj
+                    </button>
+                </div>
+            </fieldset>
+
+        </form>
+
+        <form modelAttribute="user" th:action="@{/phone}" method="post" class="form-horizontal">
+
+            <fieldset style="padding-right: 20px;">
+                <div class="form-group col-md-3" style="margin-left: 5px;">
+                    <label for="phone"> Edytuj telefon: </label> <input type="text" id="phone"
+                                                                 name="phone"
+                                                                 class="form-control"/>
+                </div>
+                <div class="col-md-9">
+                    <button type="submit" class="btn btn-primary"
+                            style="background-color: #85adad;border-color: #85adad;margin:25px;">
+                        Edytuj
+                    </button>
+                </div>
+            </fieldset>
+
+
+        </form>
     </div>
 
-    <div class="row" style="text-align: center">
-        <div class="col-md-8">
-            <table class="table table-hover" style="    background-color: #85adad;">
-                <thead>
-                <tr style="    background-color: #303333;  color: white;">
-                    <th>Odjazd</th>
-                    <th>Przyjazd</th>
-                    <th>Wolne miejsca</th>
-                    <th>Cena</th>
-
-
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="searchResult : ${searchResults}">
-
-                    <!--<td th:text="${searchResult.departure}">1</td>-->
-
-                    <!--<td th:text="${searchResult.destination}">1</td>-->
-                    <td th:text="${searchResult.departureTime}">1</td>
-                    <td th:text="${searchResult.arrivalTime}">1</td>
-
-
-                </tr>
-
-                </tbody>
-            </table>
-
-        </div>
+    <div class="row" >
+            <div class="form-group">
+                <div class="col-md-12" style="margin-top: 10px; text-align: end;">
+                    <button type="submit" class="btn btn-primary"
+                            style="background-color: #85adad;border-color: #85adad;">
+                        Usuń konto
+                    </button>
+                </div>
+            </div>
     </div>
 </div>
 
 
 <footer class="footer">
     <div class="container">
-        <p class="text-muted">AutoBus @ 2016</p>
+        <p class="text-muted">AutoBus @ 2017</p>
     </div>
 </footer>
 
-<!--<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>-->
 
-<!--&lt;!&ndash; Bootstrap Core JavaScript &ndash;&gt;-->
-<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
 <script src="http://localhost:8080/js/jquery-3.1.1.min.js"></script>
+<script src="http://localhost:8080/js/moment.js"></script>
+
 <script src="http://localhost:8080/js/bootstrap.min.js"></script>
+
 
 </body>
 </html>
