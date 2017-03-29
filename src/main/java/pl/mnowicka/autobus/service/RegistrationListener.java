@@ -34,14 +34,11 @@ public class RegistrationListener extends JavaMailSenderImpl implements Applicat
 
         service.createVerificationToken(user, token);
 
-
         String recipientAddress = user.getEmail();
 
         String subject = "AutoBus - Potwierdzenie rejestracji konta";
         String confirmationUrl
                 = event.getAppUrl() + "/regitrationConfirm.html?token=" + token;
-
-        //String message = messages.getMessage("message.regSucc", null, event.getLocale());
 
         SimpleMailMessage email = new SimpleMailMessage();
         email.setTo(recipientAddress);

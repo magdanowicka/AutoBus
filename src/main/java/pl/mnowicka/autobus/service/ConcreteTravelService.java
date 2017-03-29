@@ -33,9 +33,6 @@ public class ConcreteTravelService implements IConcreteTravelService {
         concreteTravel.setStatus("pending");
         concreteTravel.setRouteByRouteId(routeRepository.findByDepartureAndDestination("Lublin", "Warszawa"));
 
-
         return repository.save(concreteTravel);
-
     }
-
 }

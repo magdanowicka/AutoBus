@@ -3,62 +3,47 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:form="http://www.springframework.org/tags/form" xmlns:spring="http://www.springframework.org/tags">
 <head>
-
     <title>AutoBus</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="http://localhost:8080/css/modern-business.css"/>
-    <link href="http://localhost:8080/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/modern-business.css"/>
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="../css/style.css"/>
 </head>
 <body>
-
 <div class="container">
-
-
-
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">
-            <div class="card" style="background-color:#F7F7F7;padding:30px;width:%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    text-align: center;">
-
-                <a href="home"> <img src="http://localhost:8080/images/logo1.png"
-                                     style="width: 20%;padding-bottom: 15px;"/></a>
+            <div class="card">
+                <a href="home"> <img src="../images/logo1.png" class="logo-success"/></a>
 
                 <h3>Dokonałeś zakupu biletu na przejazd trasą <b>Białystok-Warszawa</b></h3>
                 <h4>Do zapłaty: <b>16 zł</b></h4>
 
                 <h4>Prosimy o przesłanie należnej kwoty na konto: <b>00 0000 0000 0000 0000 0000 0000</b></h4>
-                <br></br>
-                Bilet zostanie wysłany na podany adres e-mail. Przy wsiadaniu do autobusu należy podać numer biletu otrzymany w mailu.
-
+                <h4>
+                Bilet zostanie wysłany na podany adres e-mail. Przy wsiadaniu do autobusu należy podać numer biletu
+                otrzymany w mailu.
+                </h4>
                 <form action="/">
-                <button type="submit" class="btn btn-primary"
-                        style="background-color: #85adad;border-color: #85adad;margin: 25px;">
-                    Powrót do serwisu
-                </button>
+                    <button type="submit" class="btn btn-primary button button-margin">
+                        Powrót do serwisu
+                    </button>
                 </form>
-
             </div>
         </div>
         <div class="col-md-1"></div>
-
     </div>
-
-
 </div>
 
 <footer class="footer">
-    <div class="container" style="margin-top:40px; text-align: center;">
+    <div class="container m-t-40 t-a-c">
         <p class="text-muted">AutoBus @ 2017</p>
     </div>
 </footer>
 
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<!-- Bootstrap Core JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
+<script src="../js/jquery-3.1.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 
 </body>
 </html>

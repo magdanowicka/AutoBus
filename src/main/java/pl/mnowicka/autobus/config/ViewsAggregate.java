@@ -1,8 +1,5 @@
-package pl.mnowicka.autobus.service;
+package pl.mnowicka.autobus.config;
 
-/**
- * Created by magda on 2017-03-28.
- */
 public class ViewsAggregate {
 
     public static final String REGISTER = "register";

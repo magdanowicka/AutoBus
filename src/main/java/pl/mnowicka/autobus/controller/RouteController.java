@@ -14,12 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 import pl.mnowicka.autobus.domain.RouteDto;
-import pl.mnowicka.autobus.domain.UserDto;
 import pl.mnowicka.autobus.entities.Route;
-import pl.mnowicka.autobus.entities.User;
-import pl.mnowicka.autobus.service.EmailExistsException;
-import pl.mnowicka.autobus.service.OnRegistrationCompleteEvent;
 import pl.mnowicka.autobus.service.RouteService;
+import pl.mnowicka.autobus.config.ViewsAggregate;
 
 import javax.validation.Valid;
 
@@ -40,37 +37,31 @@ public class RouteController {
 
         RouteDto routeDto = new RouteDto();
         model.addAttribute("route", routeDto);
-        return "adminPage";
+        return ViewsAggregate.ADMINPAGE;
     }
 
     @RequestMapping(value = "/addRoute", method = RequestMethod.POST)
     @ResponseBody
     public ModelAndView addRoute(@ModelAttribute("route") @Valid RouteDto routeDto,
-                                            BindingResult result, WebRequest request, Errors errors)  {
+                                 BindingResult result, WebRequest request, Errors errors) {
 
-        String viewName = "adminPage";
-
+        String viewName = ViewsAggregate.ADMINPAGE;
 
         if (!result.hasErrors()) {
-
             Route trasa = addRoute(routeDto, result);
             Route trasaPowrotna = addBackRoute(routeDto, result);
-
-            viewName = "home";
-
+            viewName = ViewsAggregate.HOME;
         }
 
         return new ModelAndView(viewName, "route", routeDto);
-
     }
 
 
     private Route addRoute(RouteDto routeDto, BindingResult result) {
-            return service.addNewRoute(routeDto);
+        return service.addNewRoute(routeDto);
     }
+
     private Route addBackRoute(RouteDto routeDto, BindingResult result) {
         return service.addNewBackRoute(routeDto);
     }
-
-
 }

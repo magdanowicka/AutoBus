@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import pl.mnowicka.autobus.entities.ConcreteTravel;
@@ -18,12 +15,10 @@ import pl.mnowicka.autobus.entities.Route;
 
 import pl.mnowicka.autobus.repositories.ConcreteTravelRepository;
 import pl.mnowicka.autobus.repositories.RouteRepository;
+import pl.mnowicka.autobus.config.ViewsAggregate;
 
 
 import javax.servlet.http.HttpServletResponse;
-import java.security.Timestamp;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import java.util.Date;
@@ -42,7 +37,6 @@ public class SearchController {
     ConcreteTravelRepository concreteTravelRepository;
 
     @RequestMapping(value = "/searchresults", method = {RequestMethod.GET, RequestMethod.POST})
-    //public ModelAndView search(@RequestParam(value = "departure") String departure, @RequestParam(value = "destination") String destination,@RequestParam(value = "departureTime") Date departureTime) {
     public ModelAndView search(@RequestParam(value = "departure") String departure, @RequestParam(value = "destination") String destination, @RequestParam(value = "departureTime") @DateTimeFormat(iso = ISO.DATE) Date departureTime, String pSearchTerm, HttpServletRequest request, HttpServletResponse response) {
 
         List<ConcreteTravel> searchResults = new ArrayList<>();
@@ -50,57 +44,27 @@ public class SearchController {
         String odjazd = departure;
         String przyjazd = destination;
 
-
-
         Route route = routeRepository.findByDepartureAndDestination(departure, destination);
         Integer id = route.getId();
         logger.info("route results" + id);
 
-
         try {
             logger.info("dearture time" + departureTime);
-            //logger.info("searchQuery: " + destination + departure);
-            //searchResults = routeRepository.findByDepartureAndDestination(departure, destination);
-            //searchResults = concreteTravelRepository.findByDepartureTimeGreaterThan(departureTime);
-
             searchResults = concreteTravelRepository.findByRouteByRouteId(route);
-
-
         } catch (Exception ex) {
             logger.error(ex.getMessage(), ex);
         }
 
-        ModelAndView mav = new ModelAndView("/searchresults","searchResults", searchResults);
-
-
+        ModelAndView mav = new ModelAndView(ViewsAggregate.SEARCHRESULTS, "searchResults", searchResults);
 
         mav.addObject("searchResults", searchResults);
         mav.addObject("odjazd", odjazd);
         mav.addObject("przyjazd", przyjazd);
 
-        if(id!=1) return new ModelAndView("/nomatch","searchResults", searchResults);
+        if (id != 1) return new ModelAndView(ViewsAggregate.NOMATCH, "searchResults", searchResults);
         return mav;
-
     }
 
 
 }
 
-
-//    @RequestMapping( value = "search", method = RequestMethod.GET)
-//    public ModelAndView search(@RequestParam(value="from") String from, @RequestParam(value="to") String to) {
-//        List<SearchResult> results = new ArrayList<>();
-//        for (int i=0; i<10; i++) {
-//            SearchResult result = new SearchResult();
-//            result.setFrom(from);
-//            result.setTo(to);
-//            result.setArrival(new Date());
-//            results.add(result);
-//        }
-//        ModelAndView mav = new ModelAndView("search");
-//        mav.addObject("results", results);
-//        return mav;
-//    }
-//
-//
-//}

@@ -16,6 +16,8 @@ import java.util.List;
 @Repository
 public interface ConcreteTravelRepository extends CrudRepository<ConcreteTravel, Long> {
     List<ConcreteTravel> findByDepartureTime(Date departureTime);
+
     List<ConcreteTravel> findByDepartureTimeGreaterThan(Date departureTime);
-    List<ConcreteTravel> findByRouteByRouteId(Route routeByRouteId );
+
+    List<ConcreteTravel> findByRouteByRouteId(Route routeByRouteId);
 }

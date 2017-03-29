@@ -3,63 +3,54 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:form="http://www.springframework.org/tags/form" xmlns:spring="http://www.springframework.org/tags">
 <head>
-
     <title>AutoBus</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="http://localhost:8080/css/modern-business.css"/>
-    <link href="http://localhost:8080/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/modern-business.css"/>
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="../css/style.css"/>
 </head>
 <body>
-
 <div class="container">
-    <div class="row">
+    <div class="row bus-form-register">
         <div class="col-md-8 col-md-offset-2">
 
-            <div class="row" style="text-align: center; pa">
-                <a href="/"> <img src="http://localhost:8080/images/logo1.png"
-                                     style="width: 50%;padding-bottom: 30px;"/></a>
+            <div class="row t-a-c">
+                <div class="col-md-12">
+                    <a href="/"> <img src="../images/logo1.png" class="logo-register"/></a>
+                </div>
             </div>
-
-            <form modelAttribute="user" th:action="@{/register}"  method="post" class="form-horizontal" style="padding-top: 30px; ">
-
-
-
-                <fieldset style="padding-right: 20px;">
-                        <div class="form-group col-md-6" style="margin-right:10px;">
-                            <label for="username"> Imię: </label> <input type="text" id="username" name="username"
-                                                                         class="form-control"/>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="surname"> Nazwisko: </label> <input type="text" id="surname" name="surname"
-                                                                            class="form-control"/>
-                        </div>
-                        <div class="form-group col-md-6" style="margin-right:10px;">
-                            <label for="email"> Email: </label> <input type="email" id="email" name="email"
-                                                                       class="form-control"/>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="phone"> Telefon: </label> <input type="text" id="phone" name="phone"
-                                                                         class="form-control"/>
-                        </div>
-                        <div class="form-group col-md-6" style="margin-right:10px;">
-                            <label for="password"> Hasło: </label> <input type="password" id="password" name="password"
-                                                                          class="form-control"/>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="matchingPassword"> Powtórz hasło: </label> <input type="password"
-                                                                                          id="matchingPassword"
-                                                                                          name="matchingPassword"
-                                                                                          class="form-control"/>
-                        </div>
-
-
+            <form modelAttribute="user" th:action="@{/register}" method="post" class="form-horizontal p-t-30">
+                <fieldset class="p-r-20">
+                    <div class="form-group col-md-6 m-r-10">
+                        <label for="username"> Imię: </label> <input type="text" id="username" name="username"
+                                                                     class="form-control"/>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="surname"> Nazwisko: </label> <input type="text" id="surname" name="surname"
+                                                                        class="form-control"/>
+                    </div>
+                    <div class="form-group col-md-6 m-r-10">
+                        <label for="email"> Email: </label> <input type="email" id="email" name="email"
+                                                                   class="form-control"/>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="phone"> Telefon: </label> <input type="text" id="phone" name="phone"
+                                                                     class="form-control"/>
+                    </div>
+                    <div class="form-group col-md-6 m-r-10">
+                        <label for="password"> Hasło: </label> <input type="password" id="password" name="password"
+                                                                      class="form-control"/>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="matchingPassword"> Powtórz hasło: </label> <input type="password"
+                                                                                      id="matchingPassword"
+                                                                                      name="matchingPassword"
+                                                                                      class="form-control"/>
+                    </div>
                 </fieldset>
-
                 <div class="form-group">
                     <div class="col-md-12">
-                        <button type="submit" class="btn btn-primary"
-                                style="background-color: #85adad;border-color: #85adad;">
+                        <button type="submit" class="btn btn-primary button">
                             Zarejestruj
                         </button>
                     </div>
@@ -69,18 +60,12 @@
         </div>
     </div>
 </div>
-
 <footer class="footer">
-    <div class="container" style="text-align: center;">
+    <div class="container footer-prop">
         <p class="text-muted">AutoBus @ 2017</p>
     </div>
 </footer>
-
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<!-- Bootstrap Core JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-
+<script src="../js/jquery-3.1.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>

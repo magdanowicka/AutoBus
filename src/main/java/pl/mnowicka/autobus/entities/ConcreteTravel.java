@@ -23,7 +23,7 @@ public class ConcreteTravel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "concrete_travel_id_generator")
-    @SequenceGenerator(name="concrete_travel_id_generator", sequenceName = "concrete_travel_id_seq", initialValue=2, allocationSize=1)
+    @SequenceGenerator(name = "concrete_travel_id_generator", sequenceName = "concrete_travel_id_seq", initialValue = 2, allocationSize = 1)
     @Column(name = "id", updatable = false, nullable = false)
     public int getId() {
         return id;
@@ -62,16 +62,6 @@ public class ConcreteTravel {
     public void setStatus(String status) {
         this.status = status;
     }
-
-//    @Basic
-//    @Column(name = "route_id")
-//    public Integer getRouteId() {
-//        return routeId;
-//    }
-//
-//    public void setRouteId(Integer routeId) {
-//        this.routeId = routeId;
-//    }
 
     @Override
     public boolean equals(Object o) {

@@ -1,3 +1,138 @@
+.p-b-20{
+    padding-bottom: 20px;
+}
+
+.p-t-20 {
+    padding-top: 20px;
+}
+
+.p-t-30{
+    padding-top: 30px;
+}
+
+.p-r-20 {
+    padding-right: 20px;
+}
+
+.m-b-20 {
+    margin-bottom: 20px;
+}
+
+.m-b-10 {
+    margin-bottom: 10px;
+}
+
+.m-t-40 {
+    margin-top: 40px;
+}
+
+.bus-form-register .m-r-10 {
+    margin-right: 10px;
+}
+
+.bus-form-color .m-l-10 {
+    margin-left: 10px;
+}
+
+.bus-form-color .m-l-5 {
+    margin-left: 5px;
+}
+
+.bus-form-color {
+    background-color: #b4c1c1;
+}
+
+.button-margin {
+    margin:25px;
+}
+
+.button {
+    background-color: #85adad;
+    border-color: #85adad;
+}
+
+.button-search {
+    float: right;
+}
+
+.card {
+    background-color:#F7F7F7;
+    padding:10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+}
+
+.square-box {
+    margin-top:10px
+}
+
+.delete-user .delete-user-prop {
+    margin-top: 10px;
+    text-align: end;
+}
+.d-n {
+    display: none;
+}
+
+.t-a-c {
+    text-align: center;
+}
+
+.p-0 {
+    padding: 0px;
+}
+
+.logo {
+    width: 50%;
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+
+.logo-register {
+    width: 50%;
+    padding-bottom: 30px;
+}
+
+.logo-success {
+    width: 20%;
+    padding-bottom: 15px;
+}
+
+.logo-success-register {
+    width: 70%;
+    padding-bottom: 30px;
+}
+
+.login-help .color-one {
+    color:grey;
+}
+
+.login-help .color-two {
+    color:dimgray;
+}
+
+.footer-prop {
+    text-align: center;
+}
+
+.table-color {
+    background-color: #85adad;
+}
+
+.table-text-color {
+    background-color: #303333;
+    color: white;
+}
+
+
+.t-d-n {
+    text-decoration: none;
+}
+
+.success-text-color {
+    color: grey;
+}
+
 /* Tooltip container */
 .tooltip {
     position: relative;
@@ -65,6 +200,5 @@
     display: table-cell;
     text-align: center;
     vertical-align: middle;
-    color: black
-;
+    color: black;
 }

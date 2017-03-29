@@ -13,7 +13,9 @@ import java.util.List;
 public interface RouteRepository extends CrudRepository<Route, Long> {
 
     public List<Route> findByDepartureLike(String departure);
+
     public Route findByDepartureAndDestination(String departure, String destination);
+
     public List<Route> findAll();
 
 }

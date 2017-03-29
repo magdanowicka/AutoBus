@@ -28,26 +28,6 @@ public class Ticket {
         this.id = id;
     }
 
-//    @Basic
-//    @Column(name = "travel_id")
-//    public int getTravelId() {
-//        return travelId;
-//    }
-//
-//    public void setTravelId(int travelId) {
-//        this.travelId = travelId;
-//    }
-//
-//    @Basic
-//    @Column(name = "user_id")
-//    public int getUserId() {
-//        return userId;
-//    }
-//
-//    public void setUserId(int userId) {
-//        this.userId = userId;
-//    }
-
     @Basic
     @Column(name = "seat_number")
     public int getSeatNumber() {
@@ -67,16 +47,6 @@ public class Ticket {
     public void setPrice(double price) {
         this.price = price;
     }
-
-//    @Basic
-//    @Column(name = "status")
-//    public String getStatus() {
-//        return status;
-//    }
-//
-//    public void setStatus(String status) {
-//        this.status = status;
-//    }
 
     @Override
     public boolean equals(Object o) {

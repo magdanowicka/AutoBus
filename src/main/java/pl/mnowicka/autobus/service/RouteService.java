@@ -40,7 +40,6 @@ public class RouteService implements IRouteService {
         route.setLength(routeDto.getLength());
 
         return repository.save(route);
-
     }
 
     @Transactional
@@ -53,10 +52,5 @@ public class RouteService implements IRouteService {
         route.setLength(routeDto.getLength());
 
         return repository.save(route);
-
     }
-
-
-
-
 }

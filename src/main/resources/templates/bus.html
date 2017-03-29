@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title>AutoBus</title>
-    <!--<link  rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>-->
-    <link rel="stylesheet" href="http://localhost:8080/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="http://localhost:8080/css/modern-business.css"/>
-    <link href="http://localhost:8080/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="http://localhost:8080/css/style.css"/>
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/modern-business.css"/>
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="../css/style.css"/>
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1">
@@ -23,65 +22,51 @@
             <a class="navbar-brand" href="/">AutoBus</a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
             <ul class="nav navbar-nav navbar-right">
-
-                <li th:if="${#httpServletRequest.isUserInRole('ROLE_USER')}" >
+                <li th:if="${#httpServletRequest.isUserInRole('ROLE_USER')}">
                     <a href="userPage">Moje konto</a>
                 </li>
-                <li th:if="${#httpServletRequest.isUserInRole('ROLE_USER')}" >
-                    <a href="/logout">Wyloguj</a>
-                </li>
-                <li th:if="${#httpServletRequest.isUserInRole('ROLE_USER')}">
-                    <a href="#" data-toggle="modal" data-target="#contact-modal">Kontakt</a>
-                </li>
-                <li th:if="${#httpServletRequest.isUserInRole('ROLE_ADMIN')}" >
+                <li th:if="${#httpServletRequest.isUserInRole('ROLE_ADMIN')}">
                     <a href="adminPage">Administracja</a>
                 </li>
-                <li th:if="${#httpServletRequest.isUserInRole('ROLE_ADMIN')}" >
-                    <a href="/logout" >Wyloguj</a>
+                <li th:if="${#httpServletRequest.isUserInRole('ROLE_ADMIN') or #httpServletRequest.isUserInRole('ROLE_USER')}">
+                    <a href="/logout">Wyloguj</a>
                 </li>
-
                 <li th:if="${#httpServletRequest.remoteUser}==null">
                     <a href="login">Zaloguj</a>
-
                 </li>
-                <li th:if="${#httpServletRequest.remoteUser}==null">
+                <li th:if="${#httpServletRequest.remoteUser==null or #httpServletRequest.isUserInRole('ROLE_USER')}">
                     <a href="#" data-toggle="modal" data-target="#contact-modal">Kontakt</a>
                 </li>
-
             </ul>
         </div>
-        <!-- /.navbar-collapse -->
     </div>
-
-    <!-- /.container -->
 </nav>
 
-
-
 <div class="container">
-    <div class="row" style="    padding-top: 20px;">
-        <div class="card" style="background-color:#F7F7F7;padding:10px;width:%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    text-align: center;">
-        <h3>
-            Wynik dla tarsy: <b>Białystok - Warszawa</b>
-        </h3>
-        <h4>
-            Odjazd: <b>6:30 - 23.01.2017</b>   Przyjazd: <b>9:20 - 23.01.2017</b>
-        </h4>
+    <div class="row p-t-20">
+        <div class="col-md-12">
+            <div class="card">
+                <h3>
+                    Wynik dla tarsy: <b>Białystok - Warszawa</b>
+                </h3>
+                <h4>
+                    Odjazd: <b>6:30 - 23.01.2017</b> Przyjazd: <b>9:20 - 23.01.2017</b>
+                </h4>
+            </div>
         </div>
     </div>
 
-    <div class="row" >
-        <h1>Wybierz miejsce</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Wybierz miejsce</h1>
+        </div>
     </div>
     <legend></legend>
-    <div class="row" style="margin-bottom: 20px;">
+    <div class="row m-b-20">
         <div class="col-md-10">
-            <img id="plan" src="http://localhost:8080/images/schemat.jpg" alt="" usemap="#Map" class="map"/>
+            <img id="plan" src="../images/schemat.jpg" alt="" usemap="#Map" class="map"/>
             <map name="Map" id="Map">
                 <!--<area shape="rect" alt="" title="" id="1" coords="730,289,790,349" href="" target=""/>-->
                 <!--<area shape="rect" alt="" title="" id="2" coords="730,219,790,279" href="" target="" />-->
@@ -134,7 +119,7 @@
                     <div><span>Miejsce wolne</span></div>
                 </div>
             </div>
-            <div class='square-box' style="margin-top:10px">
+            <div class='square-box'>
                 <div class='square-content'>
                     <div><span>Miejsce zajęte</span></div>
                 </div>
@@ -143,25 +128,26 @@
     </div>
     <legend></legend>
     <div class="row">
-        <form modelAttribute="ticket" th:action="@{/success}" method="post" class="form-horizontal">
-            <h4>Wybrane miejsce:</h4>
-            <span id="chosen_placeholder"></span>
-            <h4>Cena: <b>16 zł</b></h4>
-            <fieldset style="padding-right: 20px;">
-                <div class="form-group col-md-6" style="margin-right:10px;">
-                    <label for="email"> Twój e-mail: </label> <input type="text" id="email" name="email"
-                                                                     class="form-control"/>
+        <div class="col-md-12">
+            <form modelAttribute="ticket" th:action="@{/success}" method="post" class="form-horizontal">
+                <h4>Wybrane miejsce:</h4>
+                <span id="chosen_placeholder"></span>
+                <h4>Cena: <b>16 zł</b></h4>
+                <fieldset class="p-r-20">
+                    <div class="form-group col-md-6 m-r-10">
+                        <label for="email"> Twój e-mail: </label> <input type="text" id="email" name="email"
+                                                                         class="form-control"/>
+                    </div>
+                </fieldset>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary button">
+                            Kup bilet
+                        </button>
+                    </div>
                 </div>
-            </fieldset>
-            <div class="form-group">
-                <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary"
-                            style="background-color: #85adad;border-color: #85adad;">
-                        Kup bilet
-                    </button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
 
@@ -172,55 +158,10 @@
     </div>
 </footer>
 
-<!--<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>-->
-
-<!-- Bootstrap Core JavaScript -->
-<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
-<script src="http://localhost:8080/js/jquery-3.1.1.min.js"></script>
-<script src="http://localhost:8080/js/bootstrap.min.js"></script>
-<script src="http://localhost:8080/js/jquery.maphilights.js"></script>
-
-<script type="text/javascript">
-    $(function () {
-        $('.map').maphilight();
-    });
-    $.fn.maphilight.defaults = {
-        fill: true,
-        fillColor: '5ada5a',
-        fillOpacity: 0.2,
-        stroke: false,
-        strokeColor: 'ff0000',
-        strokeOpacity: 1,
-        strokeWidth: 1,
-        fade: true,
-        alwaysOn: true,
-        neverOn: false,
-        groupBy: false,
-        wrapClass: true,
-        shadow: false,
-        shadowX: 0,
-        shadowY: 0,
-        shadowRadius: 6,
-        shadowColor: '000000',
-        shadowOpacity: 0.8,
-        shadowPosition: 'outside',
-        shadowFrom: false
-    }
-
-    $(document).ready(function () {
-        $('area').click(function (e) {
-            e.preventDefault();
-
-            var data = $(this).data('maphilight') || {};
-            data.fillColor = 'FFFF00'; // Sample color
-
-            $(this).data('maphilight', data).trigger('alwaysOn.maphilight');
-
-            $('#chosen_placeholder').text($('#chosen_placeholder').text() + ' ' + $(this).attr("id"));
-
-        });
-    });
-</script>
+<script src="../js/jquery-3.1.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery.maphilights.js"></script>
+<script src="../js/scripts.js"></script>
 
 </body>
 </html>

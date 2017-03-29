@@ -3,51 +3,37 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:form="http://www.springframework.org/tags/form" xmlns:spring="http://www.springframework.org/tags">
 <head>
-
     <title>AutoBus</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="http://localhost:8080/css/modern-business.css"/>
-    <link href="http://localhost:8080/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/modern-business.css"/>
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 
 <div class="container">
-
-
-
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
-            <div class="card" style="background-color:#F7F7F7;padding:30px;width:%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    text-align: center;">
+            <div class="card">
 
-                <a href="/"> <img src="http://localhost:8080/images/logo1.png"
-                                     style="width: 70%;padding-bottom: 30px;"/></a>
-
-                <h4 style="color: grey;">Link aktywujący Twoje konto został wysłany na podany adres E-mail.
-                Kliknij w niego, aby dokończyć proces rejestracji i móc zalogować się do serwisu.
-                Email może znajdować się w folderze SPAM - nie zapomnij go sprawdzić!</h4>
+                <a href="/"> <img src="../images/logo1.png" class="logo-success-register"/></a>
+                <h4 class="success-text-color">Link aktywujący Twoje konto został wysłany na podany adres E-mail.
+                    Kliknij w niego, aby dokończyć proces rejestracji i móc zalogować się do serwisu.
+                    Email może znajdować się w folderze SPAM - nie zapomnij go sprawdzić!</h4>
             </div>
         </div>
         <div class="col-md-4"></div>
-
     </div>
-
-
 </div>
 
 <footer class="footer">
-    <div class="container" style="margin-top:40px; text-align: center;">
+    <div class="container m-t-40 t-a-c">
         <p class="text-muted">AutoBus @ 2017</p>
     </div>
 </footer>
 
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<!-- Bootstrap Core JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
+<script src="../js/jquery-3.1.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 
 </body>
 </html>

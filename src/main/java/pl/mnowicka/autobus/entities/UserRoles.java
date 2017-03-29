@@ -12,8 +12,7 @@ public class UserRoles {
     private int id;
     private int userId;
     private String role;
-   // private List<User> usersByUserId;
-   private User userRolesById;
+    private User userRolesById;
 
     @Id
     @Column(name = "id")
@@ -24,16 +23,6 @@ public class UserRoles {
     public void setId(int id) {
         this.id = id;
     }
-
-//    @Basic
-//    @Column(name = "user_id")
-//    public int getUserId() {
-//        return userId;
-//    }
-//
-//    public void setUserId(int userId) {
-//        this.userId = userId;
-//    }
 
     @Basic
     @Column(name = "role")
@@ -77,12 +66,4 @@ public class UserRoles {
         this.userRolesById = userRolesById;
     }
 
-//    @OneToMany(mappedBy = "userRolesById")
-//    public List<User> getUserByUserId() {
-//        return usersByUserId;
-//    }
-//
-//    public void setUserByUserId(List<User> userByUserId) {
-//        this.usersByUserId = userByUserId;
-//    }
 }

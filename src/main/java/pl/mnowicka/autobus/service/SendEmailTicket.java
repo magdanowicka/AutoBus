@@ -8,13 +8,13 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
 
 @Service("sendEmailTicket")
-public class SendEmailTicket extends JavaMailSenderImpl{
+public class SendEmailTicket extends JavaMailSenderImpl {
 
 
     @Autowired
     private MailSender emailSender;
 
-    public void sendEmailWithTicket( String to) {
+    public void sendEmailWithTicket(String to) {
 
         SimpleMailMessage emiailTicket = new SimpleMailMessage();
 

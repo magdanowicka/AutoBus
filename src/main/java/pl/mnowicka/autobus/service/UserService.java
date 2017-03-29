@@ -30,22 +30,19 @@ public class UserService implements IUserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-
     public void setRepository(UserRepository repository) {
         this.repository = repository;
     }
-
-
 
     @Transactional
     @Override
     public User registerNewUserAccount(UserDto accountDto) throws EmailExistsException {
 
-        logger.info("Creating new user account...");
+        logger.info("Tworzenie nowego konta...");
         if (emailExist(accountDto.getEmail())) {
-            logger.error("Account already exists with email "+accountDto.getEmail());
+            logger.error("Konto juz sitnieje dla emaila " + accountDto.getEmail());
             throw new EmailExistsException(
-                    "There is an account with that email address: "
+                    "Istenie już konto z tym adresem email: "
                             + accountDto.getEmail());
         }
 
@@ -58,23 +55,7 @@ public class UserService implements IUserService {
         user.setPhone(accountDto.getPhone());
         user.setEnabled(true);
 
-//        user.setUserRolesById(Acc);
         return repository.save(user);
-
-    }
-
-
-
-    private boolean emailExist(String email) {
-        System.out.println("weszlo dp emailexists");
-
-        User user = repository.findByEmail(email);
-        if (user != null) {
-            System.out.println("wuser != null");
-            return true;
-        }
-        System.out.println("user == null");
-        return false;
     }
 
     @Override
@@ -97,9 +78,15 @@ public class UserService implements IUserService {
 
     @Override
     public void createVerificationToken(User user, String token) {
-        System.out.println("weszlo do create veri token");
         VerificationToken myToken = new VerificationToken(token, user);
-        System.out.println("myToken:" + myToken);
         tokenRepository.save(myToken);
+    }
+
+    private boolean emailExist(String email) {
+        User user = repository.findByEmail(email);
+        if (user != null) {
+            return true;
+        }
+        return false;
     }
 }

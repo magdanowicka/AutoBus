@@ -22,9 +22,6 @@ public class RouteDto {
     private String length;
 
 
-
-
-
     public String getDeparture() {
         return departure;
     }
@@ -36,7 +33,6 @@ public class RouteDto {
     public String getLength() {
         return length;
     }
-
 
 
     public void setDeparture(String departure) {

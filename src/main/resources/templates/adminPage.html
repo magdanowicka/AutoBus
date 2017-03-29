@@ -4,16 +4,16 @@
 <head>
     <title>AutoBus</title>
 
-    <link rel="stylesheet" href="http://localhost:8080/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="http://localhost:8080/css/modern-business.css"/>
-    <link href="http://localhost:8080/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/modern-business.css"/>
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="../css/style.css"/>
 
 </head>
 <body>
-<!-- Navigation -->
+
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1">
@@ -25,187 +25,157 @@
             <a class="navbar-brand" href="/">AutoBus</a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
             <ul class="nav navbar-nav navbar-right">
-
                 <li th:if="${#httpServletRequest.isUserInRole('ROLE_USER')}">
                     <a href="userPage">Moje konto</a>
-                </li>
-                <li th:if="${#httpServletRequest.isUserInRole('ROLE_USER')}">
-                    <a href="/logout">Wyloguj</a>
-                </li>
-                <li th:if="${#httpServletRequest.isUserInRole('ROLE_USER')}">
-                    <a href="#" data-toggle="modal" data-target="#contact-modal">Kontakt</a>
                 </li>
                 <li th:if="${#httpServletRequest.isUserInRole('ROLE_ADMIN')}">
                     <a href="adminPage">Administracja</a>
                 </li>
-                <li th:if="${#httpServletRequest.isUserInRole('ROLE_ADMIN')}">
+                <li th:if="${#httpServletRequest.isUserInRole('ROLE_ADMIN') or #httpServletRequest.isUserInRole('ROLE_USER')}">
                     <a href="/logout">Wyloguj</a>
                 </li>
-
                 <li th:if="${#httpServletRequest.remoteUser}==null">
                     <a href="login">Zaloguj</a>
-
                 </li>
-                <li th:if="${#httpServletRequest.remoteUser}==null">
+                <li th:if="${#httpServletRequest.remoteUser==null or #httpServletRequest.isUserInRole('ROLE_USER')}">
                     <a href="#" data-toggle="modal" data-target="#contact-modal">Kontakt</a>
                 </li>
-
             </ul>
         </div>
-        <!-- /.navbar-collapse -->
     </div>
-
-    <!-- /.container -->
 </nav>
 
 <div class="container">
-
-
-    <div class="row" style="    padding-top: 20px;    padding-bottom: 20px;">
-        <h1>Dodaj nową trasę</h1>
+    <div class="row p-t-20 p-b-20">
+        <div class="col-md-12">
+            <h1>Dodaj nową trasę</h1>
+        </div>
     </div>
-    <div class="row" style="background-color: #b4c1c1;">
+    <div class="row bus-form-color">
+        <div class="col-md-12">
+            <form modelAttribute="route" th:action="@{/adminPage}" method="post" class="form-horizontal p-t-30">
 
+                <fieldset class="p-r-20">
+                    <div class="form-group col-md-3 m-l-10">
+                        <label for="departure"> Miasto wyjazdu: </label> <input type="text" id="departure"
+                                                                                name="departure"
+                                                                                class="form-control"/>
+                    </div>
+                    <div class="form-group col-md-3 m-l-5">
+                        <label for="destination"> Miasto docelowe: </label> <input type="text" id="destination"
+                                                                                   name="destination"
+                                                                                   class="form-control"/>
+                    </div>
+                    <div class="form-group col-md-3 m-l-5">
+                        <label for="length"> Długośc trasy w km: </label> <input type="text" id="length" name="length"
+                                                                                 class="form-control"/>
+                    </div>
+                </fieldset>
 
-        <form modelAttribute="route" th:action="@{/adminPage}" method="post" class="form-horizontal"
-              style="padding-top: 30px; ">
-
-            <fieldset style="padding-right: 20px;">
-                <div class="form-group col-md-3" style="margin-left: 10px;">
-                    <label for="departure"> Miasto wyjazdu: </label> <input type="text" id="departure" name="departure"
-                                                                            class="form-control"/>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary button button-margin">
+                            Dodaj trasę
+                        </button>
+                    </div>
                 </div>
-                <div class="form-group col-md-3" style="margin-left: 5px;">
-                    <label for="destination"> Miasto docelowe: </label> <input type="text" id="destination"
-                                                                               name="destination"
-                                                                               class="form-control"/>
-                </div>
-                <div class="form-group col-md-3" style="margin-left: 5px;">
-                    <label for="length"> Długośc trasy w km: </label> <input type="text" id="length" name="length"
-                                                                             class="form-control"/>
-                </div>
 
-
-            </fieldset>
-
-            <div class="form-group">
-                <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary"
-                            style="background-color: #85adad;border-color: #85adad;margin:25px;">
-                        Dodaj trasę
-                    </button>
-                </div>
-            </div>
-
-        </form>
+            </form>
+        </div>
     </div>
 
-    <div class="row" style="    padding-top: 20px;    padding-bottom: 20px;">
-        <h1>Dodaj nowe połączenie</h1>
+    <div class="row p-t-20 p-b-20">
+        <div class="col-md-12">
+            <h1>Dodaj nowe połączenie</h1>
+        </div>
     </div>
-    <div class="row" style="background-color: #b4c1c1;">
-
-        <form modelAttribute="concrete_travel" th:action="@{/adminPageTravel}" method="post" class="form-horizontal"
-              style="padding-top: 30px; ">
-
-            <fieldset style="padding-right: 20px;">
-                <div class="form-group col-md-3" style="margin-left: 10px;">
-                    <label for="departure"> Miasto wyjazdu: </label>
-                    <input type="text" id="dep" name="departure" class="form-control" list="citiesDep"/>
-                    <datalist id="citiesDep" name="cities">
-                        <option value="Białystok"></option>
-                        <option value="Lublin"></option>
-                        <option value="Wrocław"></option>
-                        <option value="Warszawa"></option>
-                    </datalist>
-                </div>
-                <div class="form-group col-md-3" style="margin-left: 5px;">
-                    <label for="destination"> Miasto docelowe: </label>
-                    <input type="text" id="dest" name="destination" class="form-control" list="citiesArr"/>
-                    <datalist id="citiesArr" name="cities">
-                        <option value="Białystok"></option>
-                        <option value="Lublin"></option>
-                        <option value="Wrocław"></option>
-                        <option value="Warszawa"></option>
-                    </datalist>
-
-                </div>
-
-                <div class="form-group col-md-3" style="margin-left: 5px;">
-                    <label for="departure_time"> Data i godzina wyjazdu: </label>
-                    <div class="input-group">
-                        <input type="text" id="departure_time" name="departure_time" class="form-control"/>
-                        <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button"><i class="fa fa-calendar"
-                                                                                     aria-hidden="true"></i></button>
+    <div class="row bus-form-color">
+        <div class="col-md-12">
+            <form modelAttribute="concrete_travel" th:action="@{/adminPageTravel}" method="post"
+                  class="form-horizontal p-t-30">
+                <fieldset class="p-r-20">
+                    <div class="form-group col-md-3 m-l-10">
+                        <label for="departure"> Miasto wyjazdu: </label>
+                        <input type="text" id="dep" name="departure" class="form-control" list="citiesDep"/>
+                        <datalist id="citiesDep" name="cities">
+                            <option value="Białystok"></option>
+                            <option value="Lublin"></option>
+                            <option value="Wrocław"></option>
+                            <option value="Warszawa"></option>
+                        </datalist>
+                    </div>
+                    <div class="form-group col-md-3 m-l-5">
+                        <label for="destination"> Miasto docelowe: </label>
+                        <input type="text" id="dest" name="destination" class="form-control" list="citiesArr"/>
+                        <datalist id="citiesArr" name="cities">
+                            <option value="Białystok"></option>
+                            <option value="Lublin"></option>
+                            <option value="Wrocław"></option>
+                            <option value="Warszawa"></option>
+                        </datalist>
+                    </div>
+                    <div class="form-group col-md-3 m-l-5">
+                        <label for="departure_time"> Data i godzina wyjazdu: </label>
+                        <div class="input-group">
+                            <input type="text" id="departure_time" name="departure_time" class="form-control"/>
+                            <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button button-margin"><i
+                                            class="fa fa-calendar"
+                                            aria-hidden="true"></i></button>
                         </span>
+                        </div>
+
                     </div>
+                    <div class="form-group col-md-3 m-l-5">
+                        <label for="arrival_time"> Data i godzina przyjazdu: </label>
+                        <div class="input-group">
+                            <input type="text" id="arrival_time" name="arrival_time"
+                                   class="form-control"/>
+                            <span class="input-group-btn">
 
-                </div>
-                <div class="form-group col-md-3" style="margin-left: 5px;">
-                    <label for="arrival_time"> Data i godzina przyjazdu: </label>
-                    <div class="input-group">
-                        <input type="text" id="arrival_time" name="arrival_time"
-                               class="form-control"/>
-                        <span class="input-group-btn">
-
-                                    <button class="btn btn-default" type="button"><i class="fa fa-calendar"
-                                                                                     aria-hidden="true"></i></button>
+                                    <button class="btn btn-default" type="button button-margin"><i
+                                            class="fa fa-calendar"
+                                            aria-hidden="true"></i></button>
                                 </span>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary button button-margin">
+                            Dodaj połączenie
+                        </button>
                     </div>
                 </div>
-
-
-            </fieldset>
-
-
-            <div class="form-group">
-                <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary"
-                            style="background-color: #85adad;border-color: #85adad;margin: 25px;">
-                        Dodaj połączenie
-                    </button>
-                </div>
-            </div>
-
-
-        </form>
+            </form>
+        </div>
     </div>
 
-    <tbody>
-    <tr th:each="result : ${departures}">
+    <table>
+        <tbody>
+        <tr th:each="result : ${departures}">
 
-        <td th:text="${result.from}">from</td>
+            <td th:text="${result.from}">from</td>
 
-        <td th:text="${result.to}">to</td>
+            <td th:text="${result.to}">to</td>
 
-        <td th:text="${result.arrival}">arrival</td>
+            <td th:text="${result.arrival}">arrival</td>
 
-    </tr>
-    </tbody>
-
-
-</div><!--/wrap-->
-
+        </tr>
+        </tbody>
+    </table>
+</div>
 <footer class="footer">
     <div class="container">
         <p class="text-muted">AutoBus @ 2017</p>
     </div>
 </footer>
 
-<!--<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>-->
-
-<!--&lt;!&ndash; Bootstrap Core JavaScript &ndash;&gt;-->
-<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
-<script src="http://localhost:8080/js/jquery-3.1.1.min.js"></script>
-<script src="http://localhost:8080/js/moment.js"></script>
-
-<script src="http://localhost:8080/js/bootstrap.min.js"></script>
-
+<script src="../js/jquery-3.1.1.min.js"></script>
+<script src="../js/moment.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 
 </body>
 </html>

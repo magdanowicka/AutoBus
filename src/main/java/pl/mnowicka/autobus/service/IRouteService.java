@@ -13,5 +13,4 @@ public interface IRouteService {
 
     Route addNewRoute(RouteDto routeDto);
     Route addNewBackRoute(RouteDto routeDto);
-
 }

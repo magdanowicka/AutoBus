@@ -45,10 +45,13 @@ public class ConcreteTravelDto {
     private String status;
 
 
+    public Date getDepartureTime() {
+        return departureTime;
+    }
 
-    public Date getDepartureTime() { return departureTime; }
-
-    public Date getArrivalTime() { return arrivalTime; }
+    public Date getArrivalTime() {
+        return arrivalTime;
+    }
 
     public String getDepartureHour() {
 
@@ -78,9 +81,13 @@ public class ConcreteTravelDto {
         return arrivalDate;
     }
 
-    public void setDepartureTime(Date departureTime) { this.departureTime = departureTime; }
+    public void setDepartureTime(Date departureTime) {
+        this.departureTime = departureTime;
+    }
 
-    public void setArrivalTime(Date arrivalTime) { this.arrivalTime = arrivalTime; }
+    public void setArrivalTime(Date arrivalTime) {
+        this.arrivalTime = arrivalTime;
+    }
 
     @ManyToOne
     @JoinColumn(name = "route_id", referencedColumnName = "id")

@@ -14,7 +14,7 @@ public class VerificationToken {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "token_id_generator")
-    @SequenceGenerator(name="token_id_generator", sequenceName = "token_id_seq", initialValue=2, allocationSize=1)
+    @SequenceGenerator(name = "token_id_generator", sequenceName = "token_id_seq", initialValue = 2, allocationSize = 1)
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
@@ -48,7 +48,8 @@ public class VerificationToken {
         this.verified = verified;
     }
 
-    protected VerificationToken(){}
+    protected VerificationToken() {
+    }
 
     private Date calculateExpiryDate(int expiryTimeInMinutes) {
 

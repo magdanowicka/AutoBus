@@ -25,7 +25,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_generator")
-    @SequenceGenerator(name="user_id_generator", sequenceName = "user_id_seq", initialValue=2, allocationSize=1)
+    @SequenceGenerator(name = "user_id_generator", sequenceName = "user_id_seq", initialValue = 2, allocationSize = 1)
     @Column(name = "id", updatable = false, nullable = false)
     public int getId() {
         return id;
@@ -96,7 +96,6 @@ public class User {
     }
 
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -144,15 +143,5 @@ public class User {
     public void setUserByUserId(List<UserRoles> rolesByUserId) {
         this.rolesByUserId = rolesByUserId;
     }
-
-//    @ManyToOne
-//    @JoinColumn(name = "id", referencedColumnName = "user_id", nullable = false)
-//    public UserRoles getUserRolesById() {
-//        return userRolesById;
-//    }
-//
-//    public void setUserRolesById(UserRoles userRolesById) {
-//        this.userRolesById = userRolesById;
-//    }
 
 }

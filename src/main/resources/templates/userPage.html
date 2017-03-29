@@ -3,18 +3,14 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <title>AutoBus</title>
-
-    <link rel="stylesheet" href="http://localhost:8080/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="http://localhost:8080/css/modern-business.css"/>
-    <link href="http://localhost:8080/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-
-
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/modern-business.css"/>
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="../css/style.css"/>
 </head>
 <body>
-<!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1">
@@ -25,103 +21,81 @@
             </button>
             <a class="navbar-brand" href="/">AutoBus</a>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
             <ul class="nav navbar-nav navbar-right">
-
-                <li th:if="${#httpServletRequest.isUserInRole('ROLE_USER')}" >
+                <li th:if="${#httpServletRequest.isUserInRole('ROLE_USER')}">
                     <a href="userPage">Moje konto</a>
                 </li>
-                <li th:if="${#httpServletRequest.isUserInRole('ROLE_USER')}" >
-                    <a href="/logout">Wyloguj</a>
-                </li>
-                <li th:if="${#httpServletRequest.isUserInRole('ROLE_USER')}">
-                    <a href="#" data-toggle="modal" data-target="#contact-modal">Kontakt</a>
-                </li>
-                <li th:if="${#httpServletRequest.isUserInRole('ROLE_ADMIN')}" >
+                <li th:if="${#httpServletRequest.isUserInRole('ROLE_ADMIN')}">
                     <a href="adminPage">Administracja</a>
                 </li>
-                <li th:if="${#httpServletRequest.isUserInRole('ROLE_ADMIN')}" >
-                    <a href="/logout" >Wyloguj</a>
+                <li th:if="${#httpServletRequest.isUserInRole('ROLE_ADMIN') or #httpServletRequest.isUserInRole('ROLE_USER')}">
+                    <a href="/logout">Wyloguj</a>
                 </li>
-
                 <li th:if="${#httpServletRequest.remoteUser}==null">
                     <a href="login">Zaloguj</a>
-
                 </li>
-                <li th:if="${#httpServletRequest.remoteUser}==null">
+                <li th:if="${#httpServletRequest.remoteUser==null or #httpServletRequest.isUserInRole('ROLE_USER')}">
                     <a href="#" data-toggle="modal" data-target="#contact-modal">Kontakt</a>
                 </li>
-
             </ul>
         </div>
-        <!-- /.navbar-collapse -->
     </div>
-
-    <!-- /.container -->
 </nav>
 
 <div class="container">
-
-
-    <div class="row" style="    padding-top: 20px;    padding-bottom: 20px;">
-        <h1>Edytuj profil</h1>
+    <div class="row p-t-20 p-b-20">
+        <div class="col-md-12">
+            <h1>Edytuj profil</h1>
+        </div>
     </div>
-    <div style="color:white;">
-        <span th:inline="text">[[${#httpServletRequest.remoteUser}]]</span>
-    </div>
-    <div class="row" style="background-color: #b4c1c1;">
+    <div class="row bus-form-color">
+        <div class="col-md-12">
 
+            <form modelAttribute="user" th:action="@{/email}" method="post" class="form-horizontal p-t-30">
 
-        <form modelAttribute="user" th:action="@{/email}" method="post" class="form-horizontal"
-              style="padding-top: 30px; ">
+                <fieldset class="p-r-20">
+                    <div class="form-group col-md-3 m-l-10">
+                        <label for="email"> Edytuj e-mail: </label> <input type="text" id="email" name="email"
+                                                                           class="form-control"/>
+                    </div>
+                    <div class="col-md-9">
+                        <button type="submit" class="btn btn-primary button button-margin">
+                            Edytuj
+                        </button>
+                    </div>
+                </fieldset>
 
-            <fieldset style="padding-right: 20px;">
-                <div class="form-group col-md-3" style="margin-left: 10px;">
-                    <label for="email"> Edytuj e-mail: </label> <input type="text" id="email" name="email"
-                                                                class="form-control"/>
-                </div>
-                <div class="col-md-9">
-                    <button type="submit" class="btn btn-primary"
-                            style="background-color: #85adad;border-color: #85adad;margin:25px;">
-                        Edytuj
-                    </button>
-                </div>
-            </fieldset>
+            </form>
 
-        </form>
+            <form modelAttribute="user" th:action="@{/phone}" method="post" class="form-horizontal">
 
-        <form modelAttribute="user" th:action="@{/phone}" method="post" class="form-horizontal">
-
-            <fieldset style="padding-right: 20px;">
-                <div class="form-group col-md-3" style="margin-left: 5px;">
-                    <label for="phone"> Edytuj telefon: </label> <input type="text" id="phone"
-                                                                 name="phone"
-                                                                 class="form-control"/>
-                </div>
-                <div class="col-md-9">
-                    <button type="submit" class="btn btn-primary"
-                            style="background-color: #85adad;border-color: #85adad;margin:25px;">
-                        Edytuj
-                    </button>
-                </div>
-            </fieldset>
-
-
-        </form>
+                <fieldset class="p-r-20">
+                    <div class="form-group col-md-3 m-l-5">
+                        <label for="phone"> Edytuj telefon: </label> <input type="text" id="phone"
+                                                                            name="phone"
+                                                                            class="form-control"/>
+                    </div>
+                    <div class="col-md-9">
+                        <button type="submit" class="btn btn-primary button button-margin">
+                            Edytuj
+                        </button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
     </div>
 
-    <div class="row" >
+    <div class="row delete-user">
+        <div class="col-md-12">
             <div class="form-group">
-                <div class="col-md-12" style="margin-top: 10px; text-align: end;">
-                    <button type="submit" class="btn btn-primary"
-                            style="background-color: #85adad;border-color: #85adad;">
+                <div class="col-md-12 delete-user-prop">
+                    <button type="submit" class="btn btn-primary button button-margin">
                         Usuń konto
                     </button>
                 </div>
             </div>
+        </div>
     </div>
 </div>
 
@@ -132,12 +106,9 @@
     </div>
 </footer>
 
-
-<script src="http://localhost:8080/js/jquery-3.1.1.min.js"></script>
-<script src="http://localhost:8080/js/moment.js"></script>
-
-<script src="http://localhost:8080/js/bootstrap.min.js"></script>
-
+<script src="../js/jquery-3.1.1.min.js"></script>
+<script src="../js/moment.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 
 </body>
 </html>
